@@ -1,0 +1,32 @@
+aid: exchangerate-api
+name: ExchangeRate-API
+description: "Free currency conversion"
+url: https://www.exchangerate-api.com
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Currency Exchange"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Currency Exchange
+  - Public APIs
+apis:
+  - name: ExchangeRate-API
+    description: "Free currency conversion"
+    humanURL: https://www.exchangerate-api.com
+    baseURL: https://www.exchangerate-api.com
+    tags:
+      - Currency Exchange
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com
+common:
+  - type: Website
+    url: https://www.exchangerate-api.com
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
