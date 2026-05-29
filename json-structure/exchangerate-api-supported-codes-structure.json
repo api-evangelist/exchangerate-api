@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SupportedCodesResponse",
+  "type": "object",
+  "properties": {
+    "result": {"type": "string"},
+    "documentation": {"type": "string"},
+    "terms_of_use": {"type": "string"},
+    "supported_codes": {"type": "array"}
+  }
+}

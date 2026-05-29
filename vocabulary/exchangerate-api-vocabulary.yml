@@ -1,0 +1,27 @@
+name: ExchangeRate-API Domain Vocabulary
+provider: ExchangeRate-API
+providerId: exchangerate-api
+description: Tag-derived vocabulary for the ExchangeRate-API surface; sourced from openapi/ tags and the v6 API reference.
+terms:
+  - term: Latest Rates
+    description: Standard endpoint returning latest exchange rates from a base currency to all supported currencies.
+  - term: Pair Conversion
+    description: Direct currency-to-currency exchange rate, optionally with a converted amount.
+  - term: Enriched Data
+    description: Pair conversion enriched with target currency locale, name, symbol, and flag (Business / Volume plans).
+  - term: Historical Rates
+    description: Exchange rates for a specific date back to 1990 (Pro / Business / Volume plans).
+  - term: Supported Codes
+    description: List of all supported ISO 4217 currency codes and their names.
+  - term: Quota
+    description: Inspection of remaining request quota for the API key.
+  - term: Open Access
+    description: Free no-key endpoint at open.er-api.com with once-daily updates and attribution requirement.
+  - term: Base Currency
+    description: The ISO 4217 currency code from which exchange rates are derived.
+  - term: Target Currency
+    description: The ISO 4217 currency code to which the base currency is being converted.
+  - term: Conversion Rate
+    description: The exchange rate from the base currency to the target currency.
+  - term: ISO 4217
+    description: International standard defining three-letter codes for currencies (e.g., USD, EUR, GBP).

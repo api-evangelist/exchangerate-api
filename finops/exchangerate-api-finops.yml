@@ -1,0 +1,77 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: ExchangeRate-API
+providerId: exchangerate-api
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Currency Exchange
+  - Foreign Exchange
+description: 'FOCUS-aligned FinOps for ExchangeRate-API: flat-rate tiered monthly subscription with
+  monthly request quotas; no per-request usage charges. Costs are predictable monthly subscription
+  line items rather than metered usage. Annual billing yields a roughly two-month discount.'
+sources:
+  - https://www.exchangerate-api.com/#pricing
+  - https://www.exchangerate-api.com/docs/overview
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: ExchangeRate-API Ltd
+serviceCategory: Financial Data
+billingModel:
+  pricingCategory: Tiered Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+focusColumns:
+  ServiceName: ExchangeRate-API
+  ServiceCategory: Financial Data
+  ProviderName: ExchangeRate-API
+  PublisherName: ExchangeRate-API Ltd
+  InvoiceIssuerName: ExchangeRate-API Ltd
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+meters:
+  - name: subscription_fee
+    description: Flat monthly subscription per plan tier (Free $0, Pro $10, Business $30, Volume custom / $700 annual).
+    unit: month
+    aggregation: max
+    dimensions:
+      - plan
+  - name: monthly_requests_consumed
+    description: Requests consumed against the plan's monthly quota; not separately billed.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - api_key
+principles:
+  - name: Visibility
+    description: Use the GET /v6/{key}/quota endpoint to monitor remaining requests and refresh
+      day in real time. The dashboard also surfaces usage and refresh date. Reconcile programmatic
+      readings against the dashboard view monthly.
+  - name: Allocation
+    description: ExchangeRate-API tracks usage at the API key / account level. Use distinct keys
+      per integration (web app, internal batch job, mobile client) to enable per-workflow chargeback
+      and to isolate quota consumption.
+  - name: Optimization
+    description: Cache responses for the documented update cadence of your plan tier (24h Free,
+      60min Pro, 5min Business / Volume). Use the Pair Conversion endpoint for single-pair
+      lookups instead of fetching the full Latest Rates response. For static historical data,
+      compute once and cache indefinitely. Annual billing yields a roughly two-month discount.
+  - name: Accountability
+    description: Monthly subscription cost is predictable; the optimization lever is rightsizing
+      to plan tier. If quota consistently exceeds 80%, evaluate upgrading; if under 20%,
+      consider downgrading. Failed requests still count toward quota except where retried after
+      transient errors.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

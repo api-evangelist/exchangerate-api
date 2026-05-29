@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PairResponse",
+  "type": "object",
+  "properties": {
+    "result": {"type": "string"},
+    "documentation": {"type": "string"},
+    "terms_of_use": {"type": "string"},
+    "time_last_update_unix": {"type": "integer"},
+    "time_last_update_utc": {"type": "string"},
+    "time_next_update_unix": {"type": "integer"},
+    "time_next_update_utc": {"type": "string"},
+    "base_code": {"type": "string"},
+    "target_code": {"type": "string"},
+    "conversion_rate": {"type": "number"},
+    "conversion_result": {"type": "['number', 'null']"}
+  }
+}

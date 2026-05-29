@@ -1,0 +1,168 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ExchangeRate-API — Historical Rates
+  description: 'ExchangeRate-API — Historical Rates. 2 operations. Lead operation: Get Historical Rates. Self-contained Naftiko capability covering historical exchange rates (Pro / Business / Volume plans).'
+  tags:
+    - ExchangeRate-API
+    - Historical Rates
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      EXCHANGERATE_API_KEY: EXCHANGERATE_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: exchangerate-history
+      baseUri: https://v6.exchangerate-api.com/v6
+      description: ExchangeRate-API historical rates business capability. Self-contained, no shared references.
+      resources:
+        - name: history
+          path: /{api_key}/history/{base_code}/{year}/{month}/{day}
+          operations:
+            - name: getHistoricalRates
+              method: GET
+              description: Get historical exchange rates for a base currency on a specific date.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: api_key
+                  in: path
+                  type: string
+                  value: '{{env.EXCHANGERATE_API_KEY}}'
+                  description: ExchangeRate-API key (Pro plan or higher required).
+                - name: base_code
+                  in: path
+                  type: string
+                  description: ISO 4217 base currency code.
+                - name: year
+                  in: path
+                  type: integer
+                  description: Year for historical data.
+                - name: month
+                  in: path
+                  type: integer
+                  description: Month for historical data (1-12).
+                - name: day
+                  in: path
+                  type: integer
+                  description: Day for historical data (1-31).
+        - name: history-amount
+          path: /{api_key}/history/{base_code}/{year}/{month}/{day}/{amount}
+          operations:
+            - name: getHistoricalRatesWithAmount
+              method: GET
+              description: Get historical exchange rates plus converted amounts for a base currency on a specific date.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: api_key
+                  in: path
+                  type: string
+                  value: '{{env.EXCHANGERATE_API_KEY}}'
+                  description: ExchangeRate-API key (Pro plan or higher required).
+                - name: base_code
+                  in: path
+                  type: string
+                  description: ISO 4217 base currency code.
+                - name: year
+                  in: path
+                  type: integer
+                  description: Year for historical data.
+                - name: month
+                  in: path
+                  type: integer
+                  description: Month for historical data (1-12).
+                - name: day
+                  in: path
+                  type: integer
+                  description: Day for historical data (1-31).
+                - name: amount
+                  in: path
+                  type: number
+                  description: Decimal amount to convert.
+      authentication:
+        type: none
+  exposes:
+    - type: rest
+      namespace: exchangerate-history-rest
+      port: 8080
+      description: REST adapter for ExchangeRate-API Historical Rates. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/history/{base_code}/{year}/{month}/{day}
+          name: history
+          description: REST surface for historical rates.
+          operations:
+            - method: GET
+              name: getHistoricalRates
+              description: Get historical exchange rates for a base currency on a specific date.
+              call: exchangerate-history.getHistoricalRates
+              with:
+                base_code: rest.base_code
+                year: rest.year
+                month: rest.month
+                day: rest.day
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/history/{base_code}/{year}/{month}/{day}/{amount}
+          name: history-amount
+          description: REST surface for historical rates with amount.
+          operations:
+            - method: GET
+              name: getHistoricalRatesWithAmount
+              description: Get historical exchange rates plus converted amounts.
+              call: exchangerate-history.getHistoricalRatesWithAmount
+              with:
+                base_code: rest.base_code
+                year: rest.year
+                month: rest.month
+                day: rest.day
+                amount: rest.amount
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: exchangerate-history-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for ExchangeRate-API Historical Rates. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: exchangerate-get-historical-rates
+          description: Get historical exchange rates for a base currency on a specific date.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-history.getHistoricalRates
+          with:
+            base_code: tools.base_code
+            year: tools.year
+            month: tools.month
+            day: tools.day
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: exchangerate-get-historical-rates-with-amount
+          description: Get historical exchange rates plus converted amounts for a base currency on a specific date.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-history.getHistoricalRatesWithAmount
+          with:
+            base_code: tools.base_code
+            year: tools.year
+            month: tools.month
+            day: tools.day
+            amount: tools.amount
+          outputParameters:
+            - type: object
+              mapping: $.

@@ -1,0 +1,188 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ExchangeRate-API
+providerId: exchangerate-api
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - Currency Exchange
+  - Foreign Exchange
+  - Financial Data
+  - Forex
+description: ExchangeRate-API uses a tiered monthly subscription model with monthly request quotas
+  and update-frequency tiers. The Free tier offers 1,500 requests/month with once-daily updates.
+  Paid tiers (Pro, Business, Volume) add hourly to 5-minute updates and unlock historical
+  and enriched-data endpoints. Annual billing yields a roughly two-month discount.
+sources:
+  - https://www.exchangerate-api.com/#pricing
+  - https://www.exchangerate-api.com/docs/overview
+plans:
+  - id: exchangerate-api-free
+    name: Free
+    type: freemium
+    description: Free tier with 1,500 monthly requests and once-daily rate updates. No credit card required.
+    entries:
+      - label: Monthly requests
+        name: monthly_requests
+        type: quota
+        metric: request
+        limit: 1500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Update frequency
+        name: update_frequency
+        type: feature
+        metric: day
+        limit: 1
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: Latest Rates endpoint
+      - name: Pair Conversion endpoint
+      - name: Supported Codes endpoint
+      - name: Quota endpoint
+      - name: 161 supported currencies
+      - name: Email support
+  - id: exchangerate-api-pro
+    name: Pro
+    type: subscription
+    description: Pro tier with 30,000 monthly requests and hourly (60-minute) rate updates. $10/month or $100/year (two months free).
+    entries:
+      - label: Subscription
+        name: pro_subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $10 (or $100/yr)
+        userMultiplied: false
+      - label: Monthly requests
+        name: monthly_requests
+        type: quota
+        metric: request
+        limit: 30000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Update frequency
+        name: update_frequency
+        type: feature
+        metric: minutes
+        limit: 60
+        timeFrame: hour
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: All Free features
+      - name: Historical Rates endpoint (30+ years)
+      - name: 60-minute update cadence
+      - name: Pricing lock-in
+      - name: Email support
+  - id: exchangerate-api-business
+    name: Business
+    type: subscription
+    description: Business tier with 125,000 monthly requests, 5-minute updates, and enriched data access. $30/month or $300/year.
+    entries:
+      - label: Subscription
+        name: business_subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $30 (or $300/yr)
+        userMultiplied: false
+      - label: Monthly requests
+        name: monthly_requests
+        type: quota
+        metric: request
+        limit: 125000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+      - label: Update frequency
+        name: update_frequency
+        type: feature
+        metric: minutes
+        limit: 5
+        timeFrame: 5min
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: All Pro features
+      - name: Enriched Data endpoint
+      - name: 5-minute update cadence
+      - name: Priority email support
+      - name: Pricing lock-in
+  - id: exchangerate-api-volume
+    name: Volume
+    type: subscription
+    description: Highest-volume tier with the largest monthly request allotment and fastest updates. Approximately $700/year (annual billing).
+    entries:
+      - label: Subscription
+        name: volume_subscription
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: $700/yr (annual)
+        userMultiplied: false
+      - label: Monthly requests
+        name: monthly_requests
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: included
+        userMultiplied: false
+    elements:
+      - name: All Business features
+      - name: Highest request volume
+      - name: Fastest update cadence
+      - name: Priority support
+  - id: exchangerate-api-open-access
+    name: Open Access
+    type: free
+    description: No-API-key endpoint at open.er-api.com with once-daily updates. Attribution to exchangerate-api.com required.
+    entries:
+      - label: Requests
+        name: requests
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Latest Rates only
+      - name: Once-daily updates
+      - name: Attribution required
+      - name: Subject to anti-abuse throttling (HTTP 429, 20-minute reset)
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

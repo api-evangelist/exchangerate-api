@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenAccessResponse",
+  "description": "Open Access (no-API-key) response from open.er-api.com.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "provider": {
+      "type": "string",
+      "format": "uri",
+      "description": "Provider attribution URL."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "time_last_update_unix": {
+      "type": "integer",
+      "description": "Last update Unix timestamp."
+    },
+    "time_last_update_utc": {
+      "type": "string",
+      "description": "Last update in UTC."
+    },
+    "time_next_update_unix": {
+      "type": "integer",
+      "description": "Next update Unix timestamp."
+    },
+    "time_next_update_utc": {
+      "type": "string",
+      "description": "Next update in UTC."
+    },
+    "time_eol_unix": {
+      "type": "integer",
+      "description": "End of life timestamp for response data (0 if not applicable)."
+    },
+    "base_code": {
+      "type": "string",
+      "description": "Base currency code."
+    },
+    "rates": {
+      "type": "object",
+      "description": "Mapping of ISO 4217 currency codes to exchange rates from base currency.",
+      "additionalProperties": {"type": "number"}
+    }
+  },
+  "required": ["result", "base_code", "rates"]
+}

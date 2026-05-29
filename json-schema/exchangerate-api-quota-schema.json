@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QuotaResponse",
+  "description": "Request quota information for the API key.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "plan_quota": {
+      "type": "integer",
+      "description": "Total monthly request quota for the plan."
+    },
+    "requests_remaining": {
+      "type": "integer",
+      "description": "Number of requests left before the quota resets."
+    },
+    "refresh_day_of_month": {
+      "type": "integer",
+      "description": "Day of the month when the quota refreshes."
+    }
+  },
+  "required": ["result", "plan_quota", "requests_remaining", "refresh_day_of_month"]
+}

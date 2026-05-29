@@ -1,0 +1,122 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "exr": "https://www.exchangerate-api.com/ns#",
+    "base_code": {
+      "@id": "exr:baseCurrencyCode",
+      "@type": "xsd:string"
+    },
+    "target_code": {
+      "@id": "exr:targetCurrencyCode",
+      "@type": "xsd:string"
+    },
+    "conversion_rate": {
+      "@id": "exr:conversionRate",
+      "@type": "xsd:decimal"
+    },
+    "conversion_rates": {
+      "@id": "exr:conversionRates"
+    },
+    "conversion_result": {
+      "@id": "exr:conversionResult",
+      "@type": "xsd:decimal"
+    },
+    "conversion_amounts": {
+      "@id": "exr:conversionAmounts"
+    },
+    "requested_amount": {
+      "@id": "exr:requestedAmount",
+      "@type": "xsd:decimal"
+    },
+    "rates": {
+      "@id": "exr:rates"
+    },
+    "supported_codes": {
+      "@id": "exr:supportedCodes"
+    },
+    "time_last_update_unix": {
+      "@id": "exr:lastUpdateUnix",
+      "@type": "xsd:integer"
+    },
+    "time_last_update_utc": {
+      "@id": "exr:lastUpdateUtc"
+    },
+    "time_next_update_unix": {
+      "@id": "exr:nextUpdateUnix",
+      "@type": "xsd:integer"
+    },
+    "time_next_update_utc": {
+      "@id": "exr:nextUpdateUtc"
+    },
+    "time_eol_unix": {
+      "@id": "exr:eolUnix",
+      "@type": "xsd:integer"
+    },
+    "plan_quota": {
+      "@id": "exr:planQuota",
+      "@type": "xsd:integer"
+    },
+    "requests_remaining": {
+      "@id": "exr:requestsRemaining",
+      "@type": "xsd:integer"
+    },
+    "refresh_day_of_month": {
+      "@id": "exr:refreshDayOfMonth",
+      "@type": "xsd:integer"
+    },
+    "target_data": {
+      "@id": "exr:targetData"
+    },
+    "locale": {
+      "@id": "exr:locale"
+    },
+    "two_letter_code": {
+      "@id": "schema:addressCountry"
+    },
+    "currency_name": {
+      "@id": "schema:currency"
+    },
+    "currency_name_short": {
+      "@id": "exr:currencyNameShort"
+    },
+    "display_symbol": {
+      "@id": "exr:displaySymbol"
+    },
+    "flag_url": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "result": {
+      "@id": "exr:result"
+    },
+    "error-type": {
+      "@id": "exr:errorType"
+    },
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "documentation": {
+      "@id": "exr:documentation",
+      "@type": "@id"
+    },
+    "terms_of_use": {
+      "@id": "exr:termsOfUse",
+      "@type": "@id"
+    },
+    "year": {
+      "@id": "exr:year",
+      "@type": "xsd:integer"
+    },
+    "month": {
+      "@id": "exr:month",
+      "@type": "xsd:integer"
+    },
+    "day": {
+      "@id": "exr:day",
+      "@type": "xsd:integer"
+    }
+  }
+}

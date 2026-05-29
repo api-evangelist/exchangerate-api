@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ExchangeRate-API — Pair Conversion
+  description: 'ExchangeRate-API — Pair Conversion. 2 operations. Lead operation: Get Pair Conversion Rate. Self-contained Naftiko capability covering the pair conversion business surface.'
+  tags:
+    - ExchangeRate-API
+    - Pair Conversion
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      EXCHANGERATE_API_KEY: EXCHANGERATE_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: exchangerate-pair
+      baseUri: https://v6.exchangerate-api.com/v6
+      description: ExchangeRate-API pair conversion business capability. Self-contained, no shared references.
+      resources:
+        - name: pair
+          path: /{api_key}/pair/{base_code}/{target_code}
+          operations:
+            - name: getPairConversion
+              method: GET
+              description: Get the exchange rate between two currencies.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: api_key
+                  in: path
+                  type: string
+                  value: '{{env.EXCHANGERATE_API_KEY}}'
+                  description: ExchangeRate-API key.
+                - name: base_code
+                  in: path
+                  type: string
+                  description: ISO 4217 base currency code.
+                - name: target_code
+                  in: path
+                  type: string
+                  description: ISO 4217 target currency code.
+        - name: pair-amount
+          path: /{api_key}/pair/{base_code}/{target_code}/{amount}
+          operations:
+            - name: getPairConversionWithAmount
+              method: GET
+              description: Get the exchange rate and converted amount between two currencies.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: api_key
+                  in: path
+                  type: string
+                  value: '{{env.EXCHANGERATE_API_KEY}}'
+                  description: ExchangeRate-API key.
+                - name: base_code
+                  in: path
+                  type: string
+                  description: ISO 4217 base currency code.
+                - name: target_code
+                  in: path
+                  type: string
+                  description: ISO 4217 target currency code.
+                - name: amount
+                  in: path
+                  type: number
+                  description: Decimal amount to convert.
+      authentication:
+        type: none
+  exposes:
+    - type: rest
+      namespace: exchangerate-pair-rest
+      port: 8080
+      description: REST adapter for ExchangeRate-API Pair Conversion. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/pair/{base_code}/{target_code}
+          name: pair
+          description: REST surface for pair conversion.
+          operations:
+            - method: GET
+              name: getPairConversion
+              description: Get the exchange rate between two currencies.
+              call: exchangerate-pair.getPairConversion
+              with:
+                base_code: rest.base_code
+                target_code: rest.target_code
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/pair/{base_code}/{target_code}/{amount}
+          name: pair-amount
+          description: REST surface for pair conversion with amount.
+          operations:
+            - method: GET
+              name: getPairConversionWithAmount
+              description: Get the exchange rate and converted amount.
+              call: exchangerate-pair.getPairConversionWithAmount
+              with:
+                base_code: rest.base_code
+                target_code: rest.target_code
+                amount: rest.amount
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: exchangerate-pair-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for ExchangeRate-API Pair Conversion. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: exchangerate-get-pair-conversion
+          description: Get the exchange rate between two currencies.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-pair.getPairConversion
+          with:
+            base_code: tools.base_code
+            target_code: tools.target_code
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: exchangerate-get-pair-conversion-with-amount
+          description: Convert a specified amount from one currency to another at the latest rate.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-pair.getPairConversionWithAmount
+          with:
+            base_code: tools.base_code
+            target_code: tools.target_code
+            amount: tools.amount
+          outputParameters:
+            - type: object
+              mapping: $.

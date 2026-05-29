@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://v6.exchangerate-api.com/v6/YOUR-API-KEY/enriched/GBP/JPY"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": "success",
+      "documentation": "https://www.exchangerate-api.com/docs",
+      "terms_of_use": "https://www.exchangerate-api.com/terms",
+      "time_last_update_unix": 1748390402,
+      "time_last_update_utc": "Thu, 28 May 2026 00:00:02 +0000",
+      "time_next_update_unix": 1748476802,
+      "time_next_update_utc": "Fri, 29 May 2026 00:00:02 +0000",
+      "base_code": "GBP",
+      "target_code": "JPY",
+      "conversion_rate": 199.94,
+      "target_data": {
+        "locale": "Japan",
+        "two_letter_code": "JP",
+        "currency_name": "Japanese Yen",
+        "currency_name_short": "Yen",
+        "display_symbol": "&#xa5;",
+        "flag_url": "https://www.exchangerate-api.com/img/docs/JP.gif"
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ExchangeRate-API
+providerId: exchangerate-api
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Currency Exchange
+  - Foreign Exchange
+description: ExchangeRate-API enforces per-API-key monthly request quotas tied to plan tier rather
+  than per-second / per-minute rate limits. Free uses 1,500/month, Pro 30,000/month, Business
+  125,000/month, and Volume the largest allotment. When quota is exhausted the API returns an
+  error envelope with error-type quota-reached. The no-key Open Access endpoint
+  (open.er-api.com) is anti-abuse throttled and returns HTTP 429 with a 20-minute reset window.
+sources:
+  - https://www.exchangerate-api.com/docs/overview
+  - https://www.exchangerate-api.com/docs/free
+  - https://www.exchangerate-api.com/#pricing
+responseCodes:
+  quotaReached: 200
+  quotaErrorType: quota-reached
+  openAccessRateLimit: 429
+limits:
+  - name: Free plan monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 1500
+    timeFrame: month
+  - name: Pro plan monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 30000
+    timeFrame: month
+  - name: Business plan monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 125000
+    timeFrame: month
+  - name: Volume plan monthly quota
+    scope: api-key
+    metric: requests_per_month
+    limit: -1
+    timeFrame: month
+  - name: Open Access anti-abuse throttle
+    scope: ip-or-account
+    metric: requests
+    limit: -1
+    timeFrame: 20min
+policies:
+  - name: Quota refresh
+    description: Monthly request quotas refresh on the day-of-month indicated by the quota endpoint
+      response (refresh_day_of_month). Use the GET /v6/{key}/quota endpoint to programmatically
+      track remaining requests.
+  - name: Error envelope, not HTTP code
+    description: When the monthly quota is exceeded the API returns HTTP 200 with a JSON error
+      envelope where result is "error" and error-type is "quota-reached". Clients must inspect
+      the JSON body rather than relying solely on HTTP status codes.
+  - name: Open Access rate limiting
+    description: The open.er-api.com endpoint is anti-abuse throttled. Excess traffic from an IP
+      or account receives HTTP 429 with a 20-minute reset window. Caching responses for 24 hours
+      is permitted and recommended.
+  - name: Relaxed quota enforcement
+    description: ExchangeRate-API documents a relaxed enforcement policy where transient spikes
+      slightly over quota are typically tolerated, but sustained over-quota traffic triggers the
+      quota-reached error.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

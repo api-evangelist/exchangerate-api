@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EnrichedPairResponse",
+  "description": "Enriched pair conversion response with target currency metadata (Business / Volume plans).",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "time_last_update_unix": {
+      "type": "integer",
+      "description": "Last update Unix timestamp."
+    },
+    "time_last_update_utc": {
+      "type": "string",
+      "description": "Last update in UTC."
+    },
+    "time_next_update_unix": {
+      "type": "integer",
+      "description": "Next update Unix timestamp."
+    },
+    "time_next_update_utc": {
+      "type": "string",
+      "description": "Next update in UTC."
+    },
+    "base_code": {
+      "type": "string",
+      "description": "Supplied base currency."
+    },
+    "target_code": {
+      "type": "string",
+      "description": "Supplied target currency."
+    },
+    "conversion_rate": {
+      "type": "number",
+      "description": "Exchange rate between base and target."
+    },
+    "target_data": {
+      "type": "object",
+      "description": "Enriched data for the target currency.",
+      "properties": {
+        "locale": {"type": "string", "description": "Country / locale name."},
+        "two_letter_code": {"type": "string", "description": "ISO 3166-1 alpha-2 country code."},
+        "currency_name": {"type": "string", "description": "Full currency name."},
+        "currency_name_short": {"type": "string", "description": "Short currency name."},
+        "display_symbol": {"type": "string", "description": "Unicode hex reference for the currency symbol."},
+        "flag_url": {"type": "string", "format": "uri", "description": "URL to the flag image."}
+      }
+    }
+  },
+  "required": ["result", "base_code", "target_code", "conversion_rate"]
+}

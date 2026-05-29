@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ExchangeRate-API — Open Access
+  description: 'ExchangeRate-API — Open Access. 1 operation. Lead operation: Get Open Access Latest Rates. Self-contained Naftiko capability for the no-API-key open.er-api.com endpoint with attribution requirement.'
+  tags:
+    - ExchangeRate-API
+    - Open Access
+  created: '2026-05-29'
+  modified: '2026-05-29'
+capability:
+  consumes:
+    - type: http
+      namespace: exchangerate-open
+      baseUri: https://open.er-api.com/v6
+      description: ExchangeRate-API open access business capability. No API key required; attribution to exchangerate-api.com required.
+      resources:
+        - name: open-latest
+          path: /latest/{base_code}
+          operations:
+            - name: getOpenAccessLatest
+              method: GET
+              description: Get latest exchange rates without an API key (attribution required).
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: base_code
+                  in: path
+                  type: string
+                  description: ISO 4217 base currency code.
+      authentication:
+        type: none
+  exposes:
+    - type: rest
+      namespace: exchangerate-open-rest
+      port: 8080
+      description: REST adapter for ExchangeRate-API Open Access. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/open/latest/{base_code}
+          name: open-latest
+          description: REST surface for open access latest rates.
+          operations:
+            - method: GET
+              name: getOpenAccessLatest
+              description: Get latest exchange rates without an API key (attribution required).
+              call: exchangerate-open.getOpenAccessLatest
+              with:
+                base_code: rest.base_code
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: exchangerate-open-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for ExchangeRate-API Open Access. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: exchangerate-get-open-access-latest
+          description: Get latest exchange rates without an API key (attribution to exchangerate-api.com required; once-daily updates).
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-open.getOpenAccessLatest
+          with:
+            base_code: tools.base_code
+          outputParameters:
+            - type: object
+              mapping: $.

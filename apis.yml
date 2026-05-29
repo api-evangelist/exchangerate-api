@@ -1,32 +1,341 @@
 aid: exchangerate-api
 name: ExchangeRate-API
-description: "Free currency conversion"
-url: https://www.exchangerate-api.com
+description: ExchangeRate-API is a currency exchange rates API providing authoritative daily and
+  intraday foreign exchange rates for 161 currencies. The v6 surface includes Latest, Pair,
+  Enriched, Historical, Supported Codes, and Quota endpoints, plus a no-API-key Open Access
+  endpoint at open.er-api.com that requires attribution.
+image: https://www.exchangerate-api.com/img/logo.svg
+url: https://raw.githubusercontent.com/api-evangelist/exchangerate-api/refs/heads/main/apis.yml
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-29'
+type: Index
+access: 3rd-Party
 x-source: public-apis/public-apis
-x-category: "Currency Exchange"
+x-category: Currency Exchange
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
   - Currency Exchange
+  - Foreign Exchange
+  - Financial Data
+  - Forex
+  - Currency Conversion
   - Public APIs
 apis:
-  - name: ExchangeRate-API
-    description: "Free currency conversion"
-    humanURL: https://www.exchangerate-api.com
-    baseURL: https://www.exchangerate-api.com
+  - aid: exchangerate-api:latest-rates
+    name: ExchangeRate-API Latest Rates API
+    description: Returns the latest exchange rates from a base currency to all 161 supported currencies. Update cadence varies by plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume).
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/standard-requests
+    baseURL: https://v6.exchangerate-api.com/v6
     tags:
       - Currency Exchange
+      - Latest Rates
+      - Foreign Exchange
     properties:
       - type: Documentation
-        url: https://www.exchangerate-api.com
+        url: https://www.exchangerate-api.com/docs/standard-requests
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-latest-rates-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-latest-rates-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-latest-rates-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-latest-rates.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:pair-conversion
+    name: ExchangeRate-API Pair Conversion API
+    description: Returns the exchange rate between a base and a target currency, optionally with a converted amount when amount is supplied in the path.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/pair-conversion-requests
+    baseURL: https://v6.exchangerate-api.com/v6
+    tags:
+      - Currency Exchange
+      - Pair Conversion
+      - Foreign Exchange
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/pair-conversion-requests
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-pair-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-pair-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-pair-conversion-example.json
+      - type: Example
+        url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-pair-conversion.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:enriched-data
+    name: ExchangeRate-API Enriched Data API
+    description: Returns the exchange rate between a base and target currency along with enriched target currency metadata (locale, two-letter country code, currency name, display symbol, flag URL). Business and Volume plans only.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/enriched-data-requests
+    baseURL: https://v6.exchangerate-api.com/v6
+    tags:
+      - Currency Exchange
+      - Enriched Data
+      - Locale
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/enriched-data-requests
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-enriched-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-enriched-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-enriched-pair-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-enriched-data.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:historical-rates
+    name: ExchangeRate-API Historical Rates API
+    description: Returns historical exchange rates for a given base currency on a specific date. Full currency coverage from 2021-01-01 onward; 35 currencies available from 1990-01-01 to 2020-12-31. Pro, Business, and Volume plans only.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/historical-data-requests
+    baseURL: https://v6.exchangerate-api.com/v6
+    tags:
+      - Currency Exchange
+      - Historical Rates
+      - Time Series
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/historical-data-requests
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-historical-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-historical-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-historical-rates-example.json
+      - type: Example
+        url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-historical-rates.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:supported-codes
+    name: ExchangeRate-API Supported Codes API
+    description: Returns an array of all supported ISO 4217 currency codes and their full names.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/supported-codes-endpoint
+    baseURL: https://v6.exchangerate-api.com/v6
+    tags:
+      - Currency Exchange
+      - Supported Codes
+      - ISO 4217
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-supported-codes-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-supported-codes-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-supported-codes-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-supported-codes.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:quota
+    name: ExchangeRate-API Quota API
+    description: Returns the plan quota, number of requests remaining in the current billing window, and refresh metadata for the API key.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/overview
+    baseURL: https://v6.exchangerate-api.com/v6
+    tags:
+      - Currency Exchange
+      - Quota
+      - Account
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/overview
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-quota-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-quota-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-quota-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-quota.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
+  - aid: exchangerate-api:open-access
+    name: ExchangeRate-API Open Access API
+    description: No-API-key public endpoint at open.er-api.com providing latest exchange rates for a base currency. Updates once daily; attribution to exchangerate-api.com required. Anti-abuse throttled.
+    image: https://www.exchangerate-api.com/img/logo.svg
+    humanURL: https://www.exchangerate-api.com/docs/free
+    baseURL: https://open.er-api.com/v6
+    tags:
+      - Currency Exchange
+      - Open Access
+      - Free
+    properties:
+      - type: Documentation
+        url: https://www.exchangerate-api.com/docs/free
+      - type: OpenAPI
+        url: openapi/exchangerate-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/exchangerate-api-open-access-schema.json
+      - type: JSONStructure
+        url: json-structure/exchangerate-api-open-access-structure.json
+      - type: Example
+        url: examples/exchangerate-api-get-open-access-latest-example.json
+      - type: NaftikoCapability
+        url: capabilities/exchangerate-api-open-access.yaml
+    contact:
+      - FN: ExchangeRate-API Support
+        email: contact@exchangerate-api.com
+        url: https://www.exchangerate-api.com/contact
 common:
   - type: Website
     url: https://www.exchangerate-api.com
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/overview
+  - type: APIReference
+    url: https://www.exchangerate-api.com/docs/overview
+  - type: OpenAPI
+    url: openapi/exchangerate-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-error-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-error-structure.json
+  - type: JSONLD
+    url: json-ld/exchangerate-api-context.jsonld
+  - type: Example
+    url: examples/exchangerate-api-error-example.json
+  - type: Vocabulary
+    url: vocabulary/exchangerate-api-vocabulary.yml
+  - type: SpectralRules
+    url: rules/exchangerate-api-rules.yml
+  - type: Plans
+    url: plans/exchangerate-api-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/exchangerate-api-rate-limits.yml
+  - type: FinOps
+    url: finops/exchangerate-api-finops.yml
+  - type: Authentication
+    url: https://www.exchangerate-api.com/docs/overview
+  - type: Pricing
+    url: https://www.exchangerate-api.com/#pricing
+  - type: SignUp
+    url: https://app.exchangerate-api.com/sign-up
+  - type: Login
+    url: https://app.exchangerate-api.com/sign-in
+  - type: TermsOfService
+    url: https://www.exchangerate-api.com/terms
+  - type: PrivacyPolicy
+    url: https://www.exchangerate-api.com/privacy-policy
+  - type: Support
+    url: https://www.exchangerate-api.com/contact
+  - type: Contact
+    url: https://www.exchangerate-api.com/contact
+  - type: SDK
+    url: https://www.exchangerate-api.com/docs/python-currency-api
+    title: Python Documentation
+  - type: SDK
+    url: https://github.com/EloquentStudio/exchangerate-api-node
+    title: Node.js Community SDK
+  - type: MCPServer
+    url: https://lobehub.com/mcp/mazezen-mcp-exchange-rate
+    title: Community ExchangeRate MCP Server
+  - type: Features
+    data:
+      - name: Latest Rates
+        description: Get latest exchange rates from a base currency to all 161 supported currencies.
+      - name: Pair Conversion
+        description: Direct currency-to-currency rate lookup with optional amount conversion.
+      - name: Enriched Data
+        description: Pair conversion plus target currency locale, name, symbol, and flag.
+      - name: Historical Rates
+        description: Exchange rates for any date back to 1990 (with full coverage from 2021).
+      - name: Supported Codes
+        description: Full ISO 4217 currency code listing with names.
+      - name: Open Access Endpoint
+        description: No-API-key endpoint at open.er-api.com with once-daily updates and attribution.
+      - name: 99.99% Uptime SLA
+        description: Pingdom-measured uptime exceeded 99.99% during 2024.
+      - name: 161 Supported Currencies
+        description: Comprehensive coverage of world fiat currencies.
+  - type: UseCases
+    data:
+      - name: E-commerce Multi-currency Display
+        description: Show product prices in the visitor's local currency on storefronts and checkout pages.
+      - name: Cross-border Invoicing
+        description: Convert invoice totals to the customer's billing currency at the time of invoice issuance.
+      - name: Financial Reporting
+        description: Translate revenues, costs, and balances across currencies for consolidated reporting.
+      - name: Travel & Booking Platforms
+        description: Show flights, hotels, and packages in the user's home currency.
+      - name: Personal Finance Apps
+        description: Convert account balances and transactions across currencies for travel and expense tracking.
+      - name: AI / LLM Agent Currency Tools
+        description: Expose currency conversion to AI agents via MCP servers and tool-use frameworks.
+      - name: Historical Backtesting
+        description: Use 30+ years of historical rates to backtest trading strategies and FX exposure scenarios.
+  - type: Integrations
+    data:
+      - name: Python
+        description: Use ExchangeRate-API from Python applications via the documented HTTP API.
+      - name: Node.js
+        description: Community Node.js SDK published by EloquentStudio for first-class JavaScript integration.
+      - name: PHP / Java / Ruby / C# / Perl / Objective-C
+        description: Documented sample code for major server-side languages on the ExchangeRate-API docs site.
+      - name: Spreadsheets
+        description: Pull rates into Google Sheets and Excel via HTTP request functions.
+      - name: MCP Servers
+        description: Community-built Model Context Protocol servers expose ExchangeRate-API as a tool for LLM agents such as Claude.
+  - type: Solutions
+    data:
+      - name: Free Tier
+        description: Self-serve evaluation with 1,500 requests/month and daily updates.
+      - name: Pro Tier
+        description: Production-grade tier with 30,000 requests/month and hourly updates.
+      - name: Business Tier
+        description: Higher-volume tier with 125,000 requests/month, 5-minute updates, and Enriched Data access.
+      - name: Volume Tier
+        description: Highest-volume tier for high-traffic applications and aggregators.
+integrations:
+  - name: Python
+  - name: Node.js
+  - name: PHP
+  - name: Java
+  - name: Ruby
+  - name: C#
+  - name: Perl
+  - name: Objective-C
+  - name: Google Sheets
+  - name: Microsoft Excel
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+    url: https://apievangelist.com

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ExchangeRate-API — Supported Codes
+  description: 'ExchangeRate-API — Supported Codes. 1 operation. Lead operation: Get Supported Codes. Self-contained Naftiko capability listing all supported ISO 4217 currency codes.'
+  tags:
+    - ExchangeRate-API
+    - Supported Codes
+  created: '2026-05-29'
+  modified: '2026-05-29'
+binds:
+  - namespace: env
+    keys:
+      EXCHANGERATE_API_KEY: EXCHANGERATE_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: exchangerate-codes
+      baseUri: https://v6.exchangerate-api.com/v6
+      description: ExchangeRate-API supported codes business capability. Self-contained, no shared references.
+      resources:
+        - name: codes
+          path: /{api_key}/codes
+          operations:
+            - name: getSupportedCodes
+              method: GET
+              description: Get all supported ISO 4217 currency codes and their names.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: api_key
+                  in: path
+                  type: string
+                  value: '{{env.EXCHANGERATE_API_KEY}}'
+                  description: ExchangeRate-API key.
+      authentication:
+        type: none
+  exposes:
+    - type: rest
+      namespace: exchangerate-codes-rest
+      port: 8080
+      description: REST adapter for ExchangeRate-API Supported Codes. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/codes
+          name: codes
+          description: REST surface for supported codes.
+          operations:
+            - method: GET
+              name: getSupportedCodes
+              description: Get all supported ISO 4217 currency codes and their names.
+              call: exchangerate-codes.getSupportedCodes
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: exchangerate-codes-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for ExchangeRate-API Supported Codes. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: exchangerate-get-supported-codes
+          description: List all supported ISO 4217 currency codes and their names.
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: exchangerate-codes.getSupportedCodes
+          outputParameters:
+            - type: object
+              mapping: $.

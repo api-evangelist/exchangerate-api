@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SupportedCodesResponse",
+  "description": "Supported currency codes response from ExchangeRate-API v6.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "supported_codes": {
+      "type": "array",
+      "description": "Array of two-element [code, name] pairs.",
+      "items": {
+        "type": "array",
+        "items": {"type": "string"},
+        "minItems": 2,
+        "maxItems": 2
+      }
+    }
+  },
+  "required": ["result", "supported_codes"]
+}

@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://v6.exchangerate-api.com/v6/YOUR-API-KEY/quota"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": "success",
+      "documentation": "https://www.exchangerate-api.com/docs",
+      "terms_of_use": "https://www.exchangerate-api.com/terms",
+      "plan_quota": 1500,
+      "requests_remaining": 1245,
+      "refresh_day_of_month": 14
+    }
+  }
+}

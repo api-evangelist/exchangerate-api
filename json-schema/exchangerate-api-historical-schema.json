@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HistoricalRatesResponse",
+  "description": "Historical exchange rates response for a specific date (Pro / Business / Volume plans).",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "year": {
+      "type": "integer",
+      "description": "Year of historical record."
+    },
+    "month": {
+      "type": "integer",
+      "description": "Month of historical record."
+    },
+    "day": {
+      "type": "integer",
+      "description": "Day of historical record."
+    },
+    "base_code": {
+      "type": "string",
+      "description": "Base currency for the rates."
+    },
+    "requested_amount": {
+      "type": "number",
+      "description": "Optional: amount supplied for conversion."
+    },
+    "conversion_rates": {
+      "type": "object",
+      "description": "Mapping of currency codes to historical exchange rates.",
+      "additionalProperties": {"type": "number"}
+    },
+    "conversion_amounts": {
+      "type": "object",
+      "description": "Optional: mapping of currency codes to converted amounts when amount supplied.",
+      "additionalProperties": {"type": "number"}
+    }
+  },
+  "required": ["result", "year", "month", "day", "base_code"]
+}

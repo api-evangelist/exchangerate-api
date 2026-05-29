@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HistoricalRatesResponse",
+  "type": "object",
+  "properties": {
+    "result": {"type": "string"},
+    "documentation": {"type": "string"},
+    "terms_of_use": {"type": "string"},
+    "year": {"type": "integer"},
+    "month": {"type": "integer"},
+    "day": {"type": "integer"},
+    "base_code": {"type": "string"},
+    "requested_amount": {"type": "['number', 'null']"},
+    "conversion_rates": {"type": "['object', 'null']"},
+    "conversion_amounts": {"type": "['object', 'null']"}
+  }
+}

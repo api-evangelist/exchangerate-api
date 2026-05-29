@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "QuotaResponse",
+  "type": "object",
+  "properties": {
+    "result": {"type": "string"},
+    "documentation": {"type": "string"},
+    "terms_of_use": {"type": "string"},
+    "plan_quota": {"type": "integer"},
+    "requests_remaining": {"type": "integer"},
+    "refresh_day_of_month": {"type": "integer"}
+  }
+}

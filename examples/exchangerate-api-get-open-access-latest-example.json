@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://open.er-api.com/v6/latest/USD"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": "success",
+      "provider": "https://www.exchangerate-api.com",
+      "documentation": "https://www.exchangerate-api.com/docs/free",
+      "terms_of_use": "https://www.exchangerate-api.com/terms",
+      "time_last_update_unix": 1748390402,
+      "time_last_update_utc": "Thu, 28 May 2026 00:00:02 +0000",
+      "time_next_update_unix": 1748476802,
+      "time_next_update_utc": "Fri, 29 May 2026 00:00:02 +0000",
+      "time_eol_unix": 0,
+      "base_code": "USD",
+      "rates": {
+        "USD": 1,
+        "EUR": 0.9123,
+        "GBP": 0.7821,
+        "JPY": 156.42,
+        "AUD": 1.5102
+      }
+    }
+  }
+}

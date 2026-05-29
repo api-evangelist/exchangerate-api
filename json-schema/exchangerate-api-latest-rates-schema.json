@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LatestRatesResponse",
+  "description": "Standard latest exchange rates response from ExchangeRate-API v6.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator (success or error)."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "time_last_update_unix": {
+      "type": "integer",
+      "description": "Last update time as Unix timestamp."
+    },
+    "time_last_update_utc": {
+      "type": "string",
+      "description": "Last update time in UTC."
+    },
+    "time_next_update_unix": {
+      "type": "integer",
+      "description": "Next scheduled update as Unix timestamp."
+    },
+    "time_next_update_utc": {
+      "type": "string",
+      "description": "Next scheduled update in UTC."
+    },
+    "base_code": {
+      "type": "string",
+      "description": "Base currency code (ISO 4217)."
+    },
+    "conversion_rates": {
+      "type": "object",
+      "description": "Mapping of ISO 4217 currency codes to exchange rates from base currency.",
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "required": ["result", "base_code", "conversion_rates"]
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://v6.exchangerate-api.com/v6/YOUR-API-KEY/history/USD/2024/3/15"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": "success",
+      "documentation": "https://www.exchangerate-api.com/docs",
+      "terms_of_use": "https://www.exchangerate-api.com/terms",
+      "year": 2024,
+      "month": 3,
+      "day": 15,
+      "base_code": "USD",
+      "conversion_rates": {
+        "USD": 1,
+        "EUR": 0.917,
+        "GBP": 0.785,
+        "JPY": 148.34,
+        "CAD": 1.354,
+        "AUD": 1.514
+      }
+    }
+  }
+}

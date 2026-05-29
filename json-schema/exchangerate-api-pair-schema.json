@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PairResponse",
+  "description": "Pair conversion response from ExchangeRate-API v6.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "Status indicator."
+    },
+    "documentation": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to API documentation."
+    },
+    "terms_of_use": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to terms of use."
+    },
+    "time_last_update_unix": {
+      "type": "integer",
+      "description": "Last update Unix timestamp."
+    },
+    "time_last_update_utc": {
+      "type": "string",
+      "description": "Last update in UTC."
+    },
+    "time_next_update_unix": {
+      "type": "integer",
+      "description": "Next update Unix timestamp."
+    },
+    "time_next_update_utc": {
+      "type": "string",
+      "description": "Next update in UTC."
+    },
+    "base_code": {
+      "type": "string",
+      "description": "Supplied base currency."
+    },
+    "target_code": {
+      "type": "string",
+      "description": "Supplied target currency."
+    },
+    "conversion_rate": {
+      "type": "number",
+      "description": "Exchange rate between base and target."
+    },
+    "conversion_result": {
+      "type": "number",
+      "description": "Optional: converted amount when amount path parameter supplied."
+    }
+  },
+  "required": ["result", "base_code", "target_code", "conversion_rate"]
+}
