@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: ExchangeRate-API Pair Amount Conversion
+  summary: Validate currencies against supported codes, then convert a specific amount.
+  description: >-
+    A money-movement flow that converts a concrete amount from one currency to
+    another. It first retrieves the supported currency codes so the base and
+    target can be validated, and then calls the pair-conversion-with-amount
+    endpoint to return both the live exchange rate and the converted amount.
+    Each step inlines its full request, including the API key path parameter,
+    so the flow is self-describing.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRateApi
+  url: ../openapi/exchangerate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pair-amount-conversion
+  summary: Convert a specific amount between two currencies after confirming support.
+  description: >-
+    Looks up the supported currency codes, then converts the supplied amount
+    from the base currency to the target currency at the current exchange rate.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - baseCode
+    - targetCode
+    - amount
+    properties:
+      apiKey:
+        type: string
+        description: Your ExchangeRate-API dashboard API key.
+      baseCode:
+        type: string
+        description: ISO 4217 three-letter base currency code (e.g. USD).
+      targetCode:
+        type: string
+        description: ISO 4217 three-letter target currency code (e.g. EUR).
+      amount:
+        type: number
+        description: Decimal amount in the base currency to convert.
+  steps:
+  - stepId: listSupportedCodes
+    description: >-
+      Retrieve the supported ISO 4217 currency codes to confirm the base and
+      target currencies are available before converting.
+    operationId: getSupportedCodes
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      supportedCodes: $response.body#/supported_codes
+  - stepId: convertAmount
+    description: >-
+      Convert the supplied amount from the base currency to the target currency,
+      returning the live rate and the converted result.
+    operationId: getPairConversionWithAmount
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    - name: target_code
+      in: path
+      value: $inputs.targetCode
+    - name: amount
+      in: path
+      value: $inputs.amount
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      conversionRate: $response.body#/conversion_rate
+      conversionResult: $response.body#/conversion_result
+      baseCode: $response.body#/base_code
+      targetCode: $response.body#/target_code
+  outputs:
+    supportedCodes: $steps.listSupportedCodes.outputs.supportedCodes
+    conversionRate: $steps.convertAmount.outputs.conversionRate
+    conversionResult: $steps.convertAmount.outputs.conversionResult

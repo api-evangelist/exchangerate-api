@@ -217,6 +217,27 @@ apis:
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/exchangerate-api-codes-to-conversion-workflow.yml
+      name: ExchangeRate-API Codes to Conversion
+      summary: Discover supported currencies, pull latest rates, then convert a specific pair.
+    - url: arazzo/exchangerate-api-enriched-pair-display-workflow.yml
+      name: ExchangeRate-API Enriched Pair Display
+      summary: Build a display-ready conversion with currency name, symbol, and flag.
+    - url: arazzo/exchangerate-api-historical-amount-conversion-workflow.yml
+      name: ExchangeRate-API Historical Amount Conversion
+      summary: Convert an amount as it would have valued on a specific past date.
+    - url: arazzo/exchangerate-api-latest-vs-historical-workflow.yml
+      name: ExchangeRate-API Latest vs Historical
+      summary: Compare a base currency's latest rates against its rates on a past date.
+    - url: arazzo/exchangerate-api-pair-amount-conversion-workflow.yml
+      name: ExchangeRate-API Pair Amount Conversion
+      summary: Validate currencies against supported codes, then convert a specific amount.
+    - url: arazzo/exchangerate-api-quota-guarded-rates-workflow.yml
+      name: ExchangeRate-API Quota Guarded Rates
+      summary: Check remaining quota, then use the keyed endpoint or fall back to open access.
   - type: Website
     url: https://www.exchangerate-api.com
   - type: Documentation

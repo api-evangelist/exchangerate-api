@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: ExchangeRate-API Codes to Conversion
+  summary: Discover supported currencies, pull latest rates, then convert a specific pair.
+  description: >-
+    A discovery-to-conversion flow that grounds a currency conversion in the
+    provider's own supported-codes list. It first retrieves the full list of
+    supported ISO 4217 currency codes, then fetches the latest rates for the
+    chosen base currency, and finally requests a direct pair conversion between
+    the base and a target currency. Each step spells out its request inline,
+    including the API key path parameter, so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRateApi
+  url: ../openapi/exchangerate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: codes-to-conversion
+  summary: Resolve supported codes, fetch latest rates, and convert a currency pair.
+  description: >-
+    Confirms the base and target currencies are supported, retrieves the latest
+    rate table for the base currency, and then performs a direct base-to-target
+    pair conversion.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - baseCode
+    - targetCode
+    properties:
+      apiKey:
+        type: string
+        description: Your ExchangeRate-API dashboard API key.
+      baseCode:
+        type: string
+        description: ISO 4217 three-letter base currency code (e.g. USD).
+      targetCode:
+        type: string
+        description: ISO 4217 three-letter target currency code (e.g. EUR).
+  steps:
+  - stepId: listSupportedCodes
+    description: >-
+      Retrieve the full list of supported ISO 4217 currency codes and their
+      names to confirm the requested currencies are available.
+    operationId: getSupportedCodes
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      supportedCodes: $response.body#/supported_codes
+  - stepId: getLatest
+    description: >-
+      Fetch the latest exchange rates from the base currency to all supported
+      currencies.
+    operationId: getLatestRates
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      baseCode: $response.body#/base_code
+      conversionRates: $response.body#/conversion_rates
+      lastUpdate: $response.body#/time_last_update_utc
+  - stepId: convertPair
+    description: >-
+      Request the direct exchange rate between the base and target currency.
+    operationId: getPairConversion
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    - name: target_code
+      in: path
+      value: $inputs.targetCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      conversionRate: $response.body#/conversion_rate
+      targetCode: $response.body#/target_code
+  outputs:
+    supportedCodes: $steps.listSupportedCodes.outputs.supportedCodes
+    conversionRates: $steps.getLatest.outputs.conversionRates
+    conversionRate: $steps.convertPair.outputs.conversionRate

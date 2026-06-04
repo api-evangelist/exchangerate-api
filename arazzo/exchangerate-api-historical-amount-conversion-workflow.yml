@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: ExchangeRate-API Historical Amount Conversion
+  summary: Convert an amount as it would have valued on a specific past date.
+  description: >-
+    A back-test flow that values a fixed amount of a base currency against all
+    supported currencies as of a specific historical date. It first retrieves
+    the supported currency codes to confirm the base is valid, then calls the
+    historical-rates-with-amount endpoint to return the converted amounts for
+    that date. Historical data requires a Pro, Business, or Volume plan, with
+    full support from 2021-01-01 and 35 currencies from 1990-01-01. Each step
+    inlines its full request, including the API key path parameter.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRateApi
+  url: ../openapi/exchangerate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: historical-amount-conversion
+  summary: Value a fixed amount against all currencies on a chosen historical date.
+  description: >-
+    Confirms the base currency is supported, then converts the supplied amount
+    against all supported currencies using the historical rates for the chosen
+    year/month/day.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - baseCode
+    - year
+    - month
+    - day
+    - amount
+    properties:
+      apiKey:
+        type: string
+        description: Your ExchangeRate-API dashboard API key.
+      baseCode:
+        type: string
+        description: ISO 4217 three-letter base currency code (e.g. USD).
+      year:
+        type: integer
+        description: Four-digit year for the historical record (e.g. 2024).
+      month:
+        type: integer
+        description: Month for the historical record (1-12, no leading zero).
+      day:
+        type: integer
+        description: Day for the historical record (1-31, no leading zero).
+      amount:
+        type: number
+        description: Decimal amount in the base currency to convert at the historical rate.
+  steps:
+  - stepId: listSupportedCodes
+    description: >-
+      Retrieve the supported ISO 4217 currency codes to confirm the base
+      currency is available before requesting historical data.
+    operationId: getSupportedCodes
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      supportedCodes: $response.body#/supported_codes
+  - stepId: convertHistoricalAmount
+    description: >-
+      Convert the supplied amount against all supported currencies using the
+      historical exchange rates for the chosen date.
+    operationId: getHistoricalRatesWithAmount
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    - name: year
+      in: path
+      value: $inputs.year
+    - name: month
+      in: path
+      value: $inputs.month
+    - name: day
+      in: path
+      value: $inputs.day
+    - name: amount
+      in: path
+      value: $inputs.amount
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      conversionAmounts: $response.body#/conversion_amounts
+      requestedAmount: $response.body#/requested_amount
+      historicalDateYear: $response.body#/year
+      historicalDateMonth: $response.body#/month
+      historicalDateDay: $response.body#/day
+  outputs:
+    supportedCodes: $steps.listSupportedCodes.outputs.supportedCodes
+    conversionAmounts: $steps.convertHistoricalAmount.outputs.conversionAmounts

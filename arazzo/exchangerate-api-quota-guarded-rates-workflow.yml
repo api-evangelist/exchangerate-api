@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: ExchangeRate-API Quota Guarded Rates
+  summary: Check remaining quota, then use the keyed endpoint or fall back to open access.
+  description: >-
+    A quota-aware rate retrieval flow that protects a limited request budget. It
+    inspects the API key's remaining request quota and branches: when requests
+    remain it pulls the latest rates from the authenticated keyed endpoint, and
+    when the quota is exhausted it falls back to the no-key Open Access endpoint
+    (which updates once daily and requires attribution). Each step inlines its
+    full request, including the API key path parameter where applicable.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRateApi
+  url: ../openapi/exchangerate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: quota-guarded-rates
+  summary: Branch on remaining quota between the keyed and Open Access rate endpoints.
+  description: >-
+    Reads the current request quota for the API key, then either fetches the
+    latest rates via the authenticated endpoint when requests remain, or falls
+    back to the Open Access endpoint when the quota has been exhausted.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - baseCode
+    properties:
+      apiKey:
+        type: string
+        description: Your ExchangeRate-API dashboard API key.
+      baseCode:
+        type: string
+        description: ISO 4217 three-letter base currency code (e.g. USD).
+  steps:
+  - stepId: checkQuota
+    description: >-
+      Read the plan quota and number of requests remaining for the API key
+      before deciding which rate endpoint to use.
+    operationId: getQuota
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      requestsRemaining: $response.body#/requests_remaining
+      planQuota: $response.body#/plan_quota
+    onSuccess:
+    - name: quotaAvailable
+      type: goto
+      stepId: getKeyedLatest
+      criteria:
+      - context: $response.body
+        condition: $.requests_remaining > 0
+        type: jsonpath
+    - name: quotaExhausted
+      type: goto
+      stepId: getOpenAccessLatest
+      criteria:
+      - context: $response.body
+        condition: $.requests_remaining == 0
+        type: jsonpath
+  - stepId: getKeyedLatest
+    description: >-
+      Fetch the latest exchange rates through the authenticated keyed endpoint
+      because quota is still available.
+    operationId: getLatestRates
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      conversionRates: $response.body#/conversion_rates
+      lastUpdate: $response.body#/time_last_update_utc
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: getOpenAccessLatest
+    description: >-
+      Fall back to the no-key Open Access endpoint for once-daily rates because
+      the keyed quota has been exhausted.
+    operationId: getOpenAccessLatest
+    parameters:
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      openAccessRates: $response.body#/rates
+      provider: $response.body#/provider
+      lastUpdate: $response.body#/time_last_update_utc
+  outputs:
+    requestsRemaining: $steps.checkQuota.outputs.requestsRemaining
+    conversionRates: $steps.getKeyedLatest.outputs.conversionRates
+    openAccessRates: $steps.getOpenAccessLatest.outputs.openAccessRates

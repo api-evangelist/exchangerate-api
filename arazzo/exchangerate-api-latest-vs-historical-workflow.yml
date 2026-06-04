@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: ExchangeRate-API Latest vs Historical
+  summary: Compare a base currency's latest rates against its rates on a past date.
+  description: >-
+    A rate-comparison flow that pulls the latest exchange rates for a base
+    currency and then retrieves the historical rates for that same base currency
+    on a specified past date, enabling a side-by-side comparison of how rates
+    have moved. Historical data requires a Pro, Business, or Volume plan. Each
+    step inlines its full request, including the API key path parameter, so the
+    flow can be read and executed on its own.
+  version: 1.0.0
+sourceDescriptions:
+- name: exchangeRateApi
+  url: ../openapi/exchangerate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: latest-vs-historical
+  summary: Fetch latest rates and the historical rates for the same base on a past date.
+  description: >-
+    Retrieves the current rate table for the base currency and the historical
+    rate table for the same base currency on the supplied year/month/day so the
+    two can be compared.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - baseCode
+    - year
+    - month
+    - day
+    properties:
+      apiKey:
+        type: string
+        description: Your ExchangeRate-API dashboard API key.
+      baseCode:
+        type: string
+        description: ISO 4217 three-letter base currency code (e.g. USD).
+      year:
+        type: integer
+        description: Four-digit year for the historical record (e.g. 2024).
+      month:
+        type: integer
+        description: Month for the historical record (1-12, no leading zero).
+      day:
+        type: integer
+        description: Day for the historical record (1-31, no leading zero).
+  steps:
+  - stepId: getLatest
+    description: >-
+      Fetch the latest exchange rates from the base currency to all supported
+      currencies as the present-day baseline for comparison.
+    operationId: getLatestRates
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      latestRates: $response.body#/conversion_rates
+      latestUpdate: $response.body#/time_last_update_utc
+  - stepId: getHistorical
+    description: >-
+      Retrieve the historical exchange rates for the same base currency on the
+      supplied date for comparison against the latest rates.
+    operationId: getHistoricalRates
+    parameters:
+    - name: api_key
+      in: path
+      value: $inputs.apiKey
+    - name: base_code
+      in: path
+      value: $inputs.baseCode
+    - name: year
+      in: path
+      value: $inputs.year
+    - name: month
+      in: path
+      value: $inputs.month
+    - name: day
+      in: path
+      value: $inputs.day
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/result == "success"
+    outputs:
+      historicalRates: $response.body#/conversion_rates
+      historicalDateYear: $response.body#/year
+      historicalDateMonth: $response.body#/month
+      historicalDateDay: $response.body#/day
+  outputs:
+    latestRates: $steps.getLatest.outputs.latestRates
+    historicalRates: $steps.getHistorical.outputs.historicalRates
