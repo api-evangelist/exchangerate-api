@@ -1,9 +1,9 @@
 aid: exchangerate-api
 name: ExchangeRate-API
-description: ExchangeRate-API is a currency exchange rates API providing authoritative daily and
-  intraday foreign exchange rates for 161 currencies. The v6 surface includes Latest, Pair,
-  Enriched, Historical, Supported Codes, and Quota endpoints, plus a no-API-key Open Access
-  endpoint at open.er-api.com that requires attribution.
+description: >-
+  ExchangeRate-API is a currency exchange rates API providing authoritative daily and intraday foreign exchange rates
+  for 161 currencies. The v6 surface includes Latest, Pair, Enriched, Historical, Supported Codes, and Quota endpoints,
+  plus a no-API-key Open Access endpoint at open.er-api.com that requires attribution.
 image: https://www.exchangerate-api.com/img/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/exchangerate-api/refs/heads/main/apis.yml
 specificationVersion: '0.20'
@@ -25,7 +25,9 @@ tags:
 apis:
   - aid: exchangerate-api:latest-rates
     name: ExchangeRate-API Latest Rates API
-    description: Returns the latest exchange rates from a base currency to all 161 supported currencies. Update cadence varies by plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume).
+    description: >-
+      Returns the latest exchange rates from a base currency to all 161 supported currencies. Update cadence varies by
+      plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume).
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/standard-requests
     baseURL: https://v6.exchangerate-api.com/v6
@@ -44,15 +46,15 @@ apis:
         url: json-structure/exchangerate-api-latest-rates-structure.json
       - type: Example
         url: examples/exchangerate-api-get-latest-rates-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-latest-rates.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
   - aid: exchangerate-api:pair-conversion
     name: ExchangeRate-API Pair Conversion API
-    description: Returns the exchange rate between a base and a target currency, optionally with a converted amount when amount is supplied in the path.
+    description: >-
+      Returns the exchange rate between a base and a target currency, optionally with a converted amount when amount is
+      supplied in the path.
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/pair-conversion-requests
     baseURL: https://v6.exchangerate-api.com/v6
@@ -73,15 +75,15 @@ apis:
         url: examples/exchangerate-api-get-pair-conversion-example.json
       - type: Example
         url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-pair-conversion.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
   - aid: exchangerate-api:enriched-data
     name: ExchangeRate-API Enriched Data API
-    description: Returns the exchange rate between a base and target currency along with enriched target currency metadata (locale, two-letter country code, currency name, display symbol, flag URL). Business and Volume plans only.
+    description: >-
+      Returns the exchange rate between a base and target currency along with enriched target currency metadata (locale,
+      two-letter country code, currency name, display symbol, flag URL). Business and Volume plans only.
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/enriched-data-requests
     baseURL: https://v6.exchangerate-api.com/v6
@@ -100,15 +102,15 @@ apis:
         url: json-structure/exchangerate-api-enriched-structure.json
       - type: Example
         url: examples/exchangerate-api-get-enriched-pair-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-enriched-data.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
   - aid: exchangerate-api:historical-rates
     name: ExchangeRate-API Historical Rates API
-    description: Returns historical exchange rates for a given base currency on a specific date. Full currency coverage from 2021-01-01 onward; 35 currencies available from 1990-01-01 to 2020-12-31. Pro, Business, and Volume plans only.
+    description: >-
+      Returns historical exchange rates for a given base currency on a specific date. Full currency coverage from
+      2021-01-01 onward; 35 currencies available from 1990-01-01 to 2020-12-31. Pro, Business, and Volume plans only.
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/historical-data-requests
     baseURL: https://v6.exchangerate-api.com/v6
@@ -129,8 +131,6 @@ apis:
         url: examples/exchangerate-api-get-historical-rates-example.json
       - type: Example
         url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-historical-rates.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
@@ -156,15 +156,15 @@ apis:
         url: json-structure/exchangerate-api-supported-codes-structure.json
       - type: Example
         url: examples/exchangerate-api-get-supported-codes-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-supported-codes.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
   - aid: exchangerate-api:quota
     name: ExchangeRate-API Quota API
-    description: Returns the plan quota, number of requests remaining in the current billing window, and refresh metadata for the API key.
+    description: >-
+      Returns the plan quota, number of requests remaining in the current billing window, and refresh metadata for the
+      API key.
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/overview
     baseURL: https://v6.exchangerate-api.com/v6
@@ -183,15 +183,15 @@ apis:
         url: json-structure/exchangerate-api-quota-structure.json
       - type: Example
         url: examples/exchangerate-api-get-quota-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-quota.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
   - aid: exchangerate-api:open-access
     name: ExchangeRate-API Open Access API
-    description: No-API-key public endpoint at open.er-api.com providing latest exchange rates for a base currency. Updates once daily; attribution to exchangerate-api.com required. Anti-abuse throttled.
+    description: >-
+      No-API-key public endpoint at open.er-api.com providing latest exchange rates for a base currency. Updates once
+      daily; attribution to exchangerate-api.com required. Anti-abuse throttled.
     image: https://www.exchangerate-api.com/img/logo.svg
     humanURL: https://www.exchangerate-api.com/docs/free
     baseURL: https://open.er-api.com/v6
@@ -210,34 +210,34 @@ apis:
         url: json-structure/exchangerate-api-open-access-structure.json
       - type: Example
         url: examples/exchangerate-api-get-open-access-latest-example.json
-      - type: NaftikoCapability
-        url: capabilities/exchangerate-api-open-access.yaml
     contact:
       - FN: ExchangeRate-API Support
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/exchangerate-api/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/exchangerate-api-codes-to-conversion-workflow.yml
-      name: ExchangeRate-API Codes to Conversion
-      summary: Discover supported currencies, pull latest rates, then convert a specific pair.
-    - url: arazzo/exchangerate-api-enriched-pair-display-workflow.yml
-      name: ExchangeRate-API Enriched Pair Display
-      summary: Build a display-ready conversion with currency name, symbol, and flag.
-    - url: arazzo/exchangerate-api-historical-amount-conversion-workflow.yml
-      name: ExchangeRate-API Historical Amount Conversion
-      summary: Convert an amount as it would have valued on a specific past date.
-    - url: arazzo/exchangerate-api-latest-vs-historical-workflow.yml
-      name: ExchangeRate-API Latest vs Historical
-      summary: Compare a base currency's latest rates against its rates on a past date.
-    - url: arazzo/exchangerate-api-pair-amount-conversion-workflow.yml
-      name: ExchangeRate-API Pair Amount Conversion
-      summary: Validate currencies against supported codes, then convert a specific amount.
-    - url: arazzo/exchangerate-api-quota-guarded-rates-workflow.yml
-      name: ExchangeRate-API Quota Guarded Rates
-      summary: Check remaining quota, then use the keyed endpoint or fall back to open access.
+      - url: arazzo/exchangerate-api-codes-to-conversion-workflow.yml
+        name: ExchangeRate-API Codes to Conversion
+        summary: Discover supported currencies, pull latest rates, then convert a specific pair.
+      - url: arazzo/exchangerate-api-enriched-pair-display-workflow.yml
+        name: ExchangeRate-API Enriched Pair Display
+        summary: Build a display-ready conversion with currency name, symbol, and flag.
+      - url: arazzo/exchangerate-api-historical-amount-conversion-workflow.yml
+        name: ExchangeRate-API Historical Amount Conversion
+        summary: Convert an amount as it would have valued on a specific past date.
+      - url: arazzo/exchangerate-api-latest-vs-historical-workflow.yml
+        name: ExchangeRate-API Latest vs Historical
+        summary: Compare a base currency's latest rates against its rates on a past date.
+      - url: arazzo/exchangerate-api-pair-amount-conversion-workflow.yml
+        name: ExchangeRate-API Pair Amount Conversion
+        summary: Validate currencies against supported codes, then convert a specific amount.
+      - url: arazzo/exchangerate-api-quota-guarded-rates-workflow.yml
+        name: ExchangeRate-API Quota Guarded Rates
+        summary: Check remaining quota, then use the keyed endpoint or fall back to open access.
   - type: Website
     url: https://www.exchangerate-api.com
   - type: Documentation
@@ -334,7 +334,9 @@ common:
       - name: Spreadsheets
         description: Pull rates into Google Sheets and Excel via HTTP request functions.
       - name: MCP Servers
-        description: Community-built Model Context Protocol servers expose ExchangeRate-API as a tool for LLM agents such as Claude.
+        description: >-
+          Community-built Model Context Protocol servers expose ExchangeRate-API as a tool for LLM agents such as
+          Claude.
   - type: Solutions
     data:
       - name: Free Tier
