@@ -1,0 +1,1711 @@
+{
+  "info": {
+    "_postman_id": "4064b36e-b0c8-4a05-b920-92f8e0e99699",
+    "name": "ExchangeRate-API",
+    "description": "ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.\n\nContact Support:\n Name: ExchangeRate-API Support\n Email: contact@exchangerate-api.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:42.000Z",
+    "updatedAt": "2026-06-05T13:14:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4064b36e-b0c8-4a05-b920-92f8e0e99699"
+  },
+  "item": [
+    {
+      "name": "{api_key}",
+      "item": [
+        {
+          "name": "latest",
+          "item": [
+            {
+              "name": "{base_code}",
+              "item": [
+                {
+                  "name": "Get Latest Rates",
+                  "id": "208cce6d-76a0-419d-ae87-6c5e71e77899",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:api_key/latest/:base_code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":api_key",
+                        "latest",
+                        ":base_code"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6834bc43-2db5-43c3-8ace-ade667520da6",
+                          "key": "api_key",
+                          "value": "<string>",
+                          "description": "(Required) Your ExchangeRate-API dashboard API key."
+                        },
+                        {
+                          "id": "b733a54a-6c9f-43b3-9f29-4dfb0c52ae33",
+                          "key": "base_code",
+                          "value": "FCK",
+                          "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                        }
+                      ]
+                    },
+                    "description": "Returns the latest exchange rates from a given base currency to all supported currencies. Update frequency depends on plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume)."
+                  },
+                  "response": [
+                    {
+                      "id": "ea822209-d7c8-4c74-9120-8525a6b95d68",
+                      "name": "Successful response with conversion rates for the base currency.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api_key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:api_key/latest/:base_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":api_key",
+                            "latest",
+                            ":base_code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key"
+                            },
+                            {
+                              "key": "base_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"time_last_update_unix\": \"<integer>\",\n  \"time_last_update_utc\": \"<string>\",\n  \"time_next_update_unix\": \"<integer>\",\n  \"time_next_update_utc\": \"<string>\",\n  \"base_code\": \"<string>\",\n  \"conversion_rates\": {\n    \"nisi_c\": \"<number>\",\n    \"nostrud34_\": \"<number>\"\n  }\n}",
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-ea822209-d7c8-4c74-9120-8525a6b95d68"
+                    },
+                    {
+                      "id": "b42eb1fd-f1ec-4297-8b99-6b9b9f80e119",
+                      "name": "Error response (malformed request, invalid key, etc.).",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api_key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:api_key/latest/:base_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":api_key",
+                            "latest",
+                            ":base_code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "api_key"
+                            },
+                            {
+                              "key": "base_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-b42eb1fd-f1ec-4297-8b99-6b9b9f80e119"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-208cce6d-76a0-419d-ae87-6c5e71e77899"
+                }
+              ],
+              "id": "dee01afe-7eb7-4a83-9f9d-1c75f6d551dd",
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-dee01afe-7eb7-4a83-9f9d-1c75f6d551dd"
+            }
+          ],
+          "id": "e017e5a1-e5d8-48db-a083-1da639a28b6d",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-e017e5a1-e5d8-48db-a083-1da639a28b6d"
+        },
+        {
+          "name": "pair",
+          "item": [
+            {
+              "name": "{base_code}",
+              "item": [
+                {
+                  "name": "{target_code}",
+                  "item": [
+                    {
+                      "name": "{amount}",
+                      "item": [
+                        {
+                          "name": "Get Pair Conversion With Amount",
+                          "id": "fa7bcc87-8ebb-4986-81c3-2b9fedf322b4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code/:amount",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":api_key",
+                                "pair",
+                                ":base_code",
+                                ":target_code",
+                                ":amount"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fcb3f421-f045-4479-bb4b-2a3e0b682041",
+                                  "key": "api_key",
+                                  "value": "<string>",
+                                  "description": "(Required) Your ExchangeRate-API dashboard API key."
+                                },
+                                {
+                                  "id": "bea04db7-1ffc-4a7c-87c3-d6d485a49614",
+                                  "key": "base_code",
+                                  "value": "FCK",
+                                  "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                                },
+                                {
+                                  "id": "6b6d8a1d-67ee-4e98-9f3f-1627564c3b2d",
+                                  "key": "target_code",
+                                  "value": "QJV",
+                                  "description": "(Required) ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+                                },
+                                {
+                                  "id": "ec0df14a-8aed-4439-b604-f57243545896",
+                                  "key": "amount",
+                                  "value": "<double>",
+                                  "description": "(Required) Decimal amount to convert (xxxx.xxxx format)."
+                                }
+                              ]
+                            },
+                            "description": "Returns the exchange rate between a base and a target currency along with the converted amount."
+                          },
+                          "response": [
+                            {
+                              "id": "e14efa02-75b3-472a-b71c-02d78452de6a",
+                              "name": "Successful response with conversion rate and converted amount.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api_key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code/:amount",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":api_key",
+                                    "pair",
+                                    ":base_code",
+                                    ":target_code",
+                                    ":amount"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "api_key"
+                                    },
+                                    {
+                                      "key": "base_code"
+                                    },
+                                    {
+                                      "key": "target_code"
+                                    },
+                                    {
+                                      "key": "amount"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"time_last_update_unix\": \"<integer>\",\n  \"time_last_update_utc\": \"<string>\",\n  \"time_next_update_unix\": \"<integer>\",\n  \"time_next_update_utc\": \"<string>\",\n  \"base_code\": \"<string>\",\n  \"target_code\": \"<string>\",\n  \"conversion_rate\": \"<number>\",\n  \"conversion_result\": \"<number>\"\n}",
+                              "createdAt": "2026-06-05T13:14:43.000Z",
+                              "updatedAt": "2026-06-05T13:14:43.000Z",
+                              "uid": "35240-e14efa02-75b3-472a-b71c-02d78452de6a"
+                            },
+                            {
+                              "id": "90b0a27c-61e7-438e-8b8d-8df464a8ccba",
+                              "name": "Error response.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api_key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code/:amount",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":api_key",
+                                    "pair",
+                                    ":base_code",
+                                    ":target_code",
+                                    ":amount"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "api_key"
+                                    },
+                                    {
+                                      "key": "base_code"
+                                    },
+                                    {
+                                      "key": "target_code"
+                                    },
+                                    {
+                                      "key": "amount"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                              "createdAt": "2026-06-05T13:14:43.000Z",
+                              "updatedAt": "2026-06-05T13:14:43.000Z",
+                              "uid": "35240-90b0a27c-61e7-438e-8b8d-8df464a8ccba"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-fa7bcc87-8ebb-4986-81c3-2b9fedf322b4"
+                        }
+                      ],
+                      "id": "cde519d5-1944-41f5-92ec-239beccbc2f3",
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-cde519d5-1944-41f5-92ec-239beccbc2f3"
+                    },
+                    {
+                      "name": "Get Pair Conversion Rate",
+                      "id": "99dee1de-3d38-4bc1-925f-a0166b635eb8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":api_key",
+                            "pair",
+                            ":base_code",
+                            ":target_code"
+                          ],
+                          "variable": [
+                            {
+                              "id": "271c508d-6120-43a9-8131-58f68d55a70f",
+                              "key": "api_key",
+                              "value": "<string>",
+                              "description": "(Required) Your ExchangeRate-API dashboard API key."
+                            },
+                            {
+                              "id": "f971a03b-475a-4a96-a90e-a9fd5da18c83",
+                              "key": "base_code",
+                              "value": "FCK",
+                              "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                            },
+                            {
+                              "id": "3a31650c-b69e-4195-a1b9-3c01a423ba16",
+                              "key": "target_code",
+                              "value": "QJV",
+                              "description": "(Required) ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+                            }
+                          ]
+                        },
+                        "description": "Returns the exchange rate between a base and a target currency."
+                      },
+                      "response": [
+                        {
+                          "id": "84906c73-da21-4fc0-a792-2e409775d65b",
+                          "name": "Successful response with conversion rate for the currency pair.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api_key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":api_key",
+                                "pair",
+                                ":base_code",
+                                ":target_code"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_key"
+                                },
+                                {
+                                  "key": "base_code"
+                                },
+                                {
+                                  "key": "target_code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"time_last_update_unix\": \"<integer>\",\n  \"time_last_update_utc\": \"<string>\",\n  \"time_next_update_unix\": \"<integer>\",\n  \"time_next_update_utc\": \"<string>\",\n  \"base_code\": \"<string>\",\n  \"target_code\": \"<string>\",\n  \"conversion_rate\": \"<number>\"\n}",
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-84906c73-da21-4fc0-a792-2e409775d65b"
+                        },
+                        {
+                          "id": "1cfe9ed6-b493-4a20-b680-4a44b731812f",
+                          "name": "Error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api_key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:api_key/pair/:base_code/:target_code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":api_key",
+                                "pair",
+                                ":base_code",
+                                ":target_code"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_key"
+                                },
+                                {
+                                  "key": "base_code"
+                                },
+                                {
+                                  "key": "target_code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-1cfe9ed6-b493-4a20-b680-4a44b731812f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-99dee1de-3d38-4bc1-925f-a0166b635eb8"
+                    }
+                  ],
+                  "id": "20f6b556-ec0c-4da2-bd13-202dad8b77d0",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-20f6b556-ec0c-4da2-bd13-202dad8b77d0"
+                }
+              ],
+              "id": "87d67f45-5b16-4f5f-a6bc-d4ea3a51eeb8",
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-87d67f45-5b16-4f5f-a6bc-d4ea3a51eeb8"
+            }
+          ],
+          "id": "2642e37b-568f-4ca0-8483-974fb22d0722",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-2642e37b-568f-4ca0-8483-974fb22d0722"
+        },
+        {
+          "name": "enriched",
+          "item": [
+            {
+              "name": "{base_code}",
+              "item": [
+                {
+                  "name": "{target_code}",
+                  "item": [
+                    {
+                      "name": "Get Enriched Pair Data",
+                      "id": "70a00772-cbcf-4d87-a0dc-f495c4ba4d87",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:api_key/enriched/:base_code/:target_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":api_key",
+                            "enriched",
+                            ":base_code",
+                            ":target_code"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a235d391-c1ac-4683-a5f9-ea88bb180095",
+                              "key": "api_key",
+                              "value": "<string>",
+                              "description": "(Required) Your ExchangeRate-API dashboard API key."
+                            },
+                            {
+                              "id": "c2d95b21-8f0f-4512-8b90-3f39ccb000ef",
+                              "key": "base_code",
+                              "value": "FCK",
+                              "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                            },
+                            {
+                              "id": "dc62ad97-72a8-4d6e-b7eb-da7343635525",
+                              "key": "target_code",
+                              "value": "QJV",
+                              "description": "(Required) ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+                            }
+                          ]
+                        },
+                        "description": "Returns the exchange rate between a base and target currency along with enriched target currency metadata (country locale, two-letter country code, currency name, display symbol, flag URL). Only available on Business and Volume plans."
+                      },
+                      "response": [
+                        {
+                          "id": "84d4c0df-596a-40b1-b6f4-037adce4c89e",
+                          "name": "Successful response with conversion rate and enriched target data.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api_key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:api_key/enriched/:base_code/:target_code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":api_key",
+                                "enriched",
+                                ":base_code",
+                                ":target_code"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_key"
+                                },
+                                {
+                                  "key": "base_code"
+                                },
+                                {
+                                  "key": "target_code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"time_last_update_unix\": \"<integer>\",\n  \"time_last_update_utc\": \"<string>\",\n  \"time_next_update_unix\": \"<integer>\",\n  \"time_next_update_utc\": \"<string>\",\n  \"base_code\": \"<string>\",\n  \"target_code\": \"<string>\",\n  \"conversion_rate\": \"<number>\",\n  \"target_data\": {\n    \"locale\": \"<string>\",\n    \"two_letter_code\": \"<string>\",\n    \"currency_name\": \"<string>\",\n    \"currency_name_short\": \"<string>\",\n    \"display_symbol\": \"<string>\",\n    \"flag_url\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-84d4c0df-596a-40b1-b6f4-037adce4c89e"
+                        },
+                        {
+                          "id": "942e184d-3b27-4b13-bfd6-71018a0fc5b9",
+                          "name": "Error response (may include plan-upgrade-required).",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "api_key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:api_key/enriched/:base_code/:target_code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":api_key",
+                                "enriched",
+                                ":base_code",
+                                ":target_code"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "api_key"
+                                },
+                                {
+                                  "key": "base_code"
+                                },
+                                {
+                                  "key": "target_code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-942e184d-3b27-4b13-bfd6-71018a0fc5b9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-70a00772-cbcf-4d87-a0dc-f495c4ba4d87"
+                    }
+                  ],
+                  "id": "6db72b48-9d4f-436f-a92c-f432fd22d11d",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-6db72b48-9d4f-436f-a92c-f432fd22d11d"
+                }
+              ],
+              "id": "3fd8e2cb-ee63-4112-88b0-d73aff59acd7",
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-3fd8e2cb-ee63-4112-88b0-d73aff59acd7"
+            }
+          ],
+          "id": "bd855005-2ff5-4ee5-a5db-123180a11aca",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-bd855005-2ff5-4ee5-a5db-123180a11aca"
+        },
+        {
+          "name": "history",
+          "item": [
+            {
+              "name": "{base_code}",
+              "item": [
+                {
+                  "name": "{year}",
+                  "item": [
+                    {
+                      "name": "{month}",
+                      "item": [
+                        {
+                          "name": "{day}",
+                          "item": [
+                            {
+                              "name": "{amount}",
+                              "item": [
+                                {
+                                  "name": "Get Historical Rates With Amount",
+                                  "id": "f73f86d4-b49c-4dbc-a604-d96d9ce9add9",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day/:amount",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        ":api_key",
+                                        "history",
+                                        ":base_code",
+                                        ":year",
+                                        ":month",
+                                        ":day",
+                                        ":amount"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "4f9de15f-878b-4dce-bd0a-85a7f1418327",
+                                          "key": "api_key",
+                                          "value": "<string>",
+                                          "description": "(Required) Your ExchangeRate-API dashboard API key."
+                                        },
+                                        {
+                                          "id": "6c5627fa-2f02-470a-bba0-4318b7312f6c",
+                                          "key": "base_code",
+                                          "value": "FCK",
+                                          "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                                        },
+                                        {
+                                          "id": "bfd5faf8-78fc-4a00-b0ca-c4078d7782f8",
+                                          "key": "year",
+                                          "value": "<integer>",
+                                          "description": "(Required) Year for historical data (full four-digit year)."
+                                        },
+                                        {
+                                          "id": "6cdfb192-785e-4dff-94e4-4a812a89b9bd",
+                                          "key": "month",
+                                          "value": "<integer>",
+                                          "description": "(Required) Month for historical data (1-12, no leading zero)."
+                                        },
+                                        {
+                                          "id": "dbb4c037-5dd7-4bb1-89cf-32670df33ffa",
+                                          "key": "day",
+                                          "value": "<integer>",
+                                          "description": "(Required) Day for historical data (1-31, no leading zero)."
+                                        },
+                                        {
+                                          "id": "e0dc5c16-940e-433d-a19d-3b2a8a4ecc9d",
+                                          "key": "amount",
+                                          "value": "<double>",
+                                          "description": "(Required) Decimal amount to convert (xxxx.xxxx format)."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns historical exchange rates plus converted amounts for the given base currency on the specified date."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "6895d861-de37-407f-9d65-3071e5b4712e",
+                                      "name": "Successful response with historical rates and converted amounts for the given date.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "api_key",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day/:amount",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            ":api_key",
+                                            "history",
+                                            ":base_code",
+                                            ":year",
+                                            ":month",
+                                            ":day",
+                                            ":amount"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "api_key"
+                                            },
+                                            {
+                                              "key": "base_code"
+                                            },
+                                            {
+                                              "key": "year"
+                                            },
+                                            {
+                                              "key": "month"
+                                            },
+                                            {
+                                              "key": "day"
+                                            },
+                                            {
+                                              "key": "amount"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"year\": \"<integer>\",\n  \"month\": \"<integer>\",\n  \"day\": \"<integer>\",\n  \"base_code\": \"<string>\",\n  \"requested_amount\": \"<number>\",\n  \"conversion_amounts\": {\n    \"ut_86\": \"<number>\",\n    \"pariatur_7_b\": \"<number>\"\n  }\n}",
+                                      "createdAt": "2026-06-05T13:14:43.000Z",
+                                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                                      "uid": "35240-6895d861-de37-407f-9d65-3071e5b4712e"
+                                    },
+                                    {
+                                      "id": "38db2c08-0c30-48e0-acb9-5f61d24bb2a6",
+                                      "name": "Error response.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "api_key",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day/:amount",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            ":api_key",
+                                            "history",
+                                            ":base_code",
+                                            ":year",
+                                            ":month",
+                                            ":day",
+                                            ":amount"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "api_key"
+                                            },
+                                            {
+                                              "key": "base_code"
+                                            },
+                                            {
+                                              "key": "year"
+                                            },
+                                            {
+                                              "key": "month"
+                                            },
+                                            {
+                                              "key": "day"
+                                            },
+                                            {
+                                              "key": "amount"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                                      "createdAt": "2026-06-05T13:14:43.000Z",
+                                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                                      "uid": "35240-38db2c08-0c30-48e0-acb9-5f61d24bb2a6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T13:14:43.000Z",
+                                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                                  "uid": "35240-f73f86d4-b49c-4dbc-a604-d96d9ce9add9"
+                                }
+                              ],
+                              "id": "5b45d2ed-9467-4cd9-acfd-c826715815c5",
+                              "createdAt": "2026-06-05T13:14:43.000Z",
+                              "updatedAt": "2026-06-05T13:14:43.000Z",
+                              "uid": "35240-5b45d2ed-9467-4cd9-acfd-c826715815c5"
+                            },
+                            {
+                              "name": "Get Historical Rates",
+                              "id": "6ca0b609-cf96-40d3-85a9-dee91a88a3be",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":api_key",
+                                    "history",
+                                    ":base_code",
+                                    ":year",
+                                    ":month",
+                                    ":day"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c98b3f86-6895-43e2-9616-d41b04673e7f",
+                                      "key": "api_key",
+                                      "value": "<string>",
+                                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                                    },
+                                    {
+                                      "id": "f2be53f7-d96a-4be4-a277-178c373d2290",
+                                      "key": "base_code",
+                                      "value": "FCK",
+                                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                                    },
+                                    {
+                                      "id": "2a723eae-6b30-482b-8bb2-498edf2fc751",
+                                      "key": "year",
+                                      "value": "<integer>",
+                                      "description": "(Required) Year for historical data (full four-digit year)."
+                                    },
+                                    {
+                                      "id": "43e90570-3491-46e5-8e20-8524befb0b88",
+                                      "key": "month",
+                                      "value": "<integer>",
+                                      "description": "(Required) Month for historical data (1-12, no leading zero)."
+                                    },
+                                    {
+                                      "id": "821899a5-fc3d-4231-b211-66e7861bacac",
+                                      "key": "day",
+                                      "value": "<integer>",
+                                      "description": "(Required) Day for historical data (1-31, no leading zero)."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns historical exchange rates for the given base currency on the specified date. Full currency support from 2021-01-01 onward; 35 currencies are available from 1990-01-01 to 2020-12-31. Only available on Pro, Business, and Volume plans."
+                              },
+                              "response": [
+                                {
+                                  "id": "338591f2-275c-41fb-8418-3f69338df9ed",
+                                  "name": "Successful response with historical rates for the given date.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "api_key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        ":api_key",
+                                        "history",
+                                        ":base_code",
+                                        ":year",
+                                        ":month",
+                                        ":day"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "api_key"
+                                        },
+                                        {
+                                          "key": "base_code"
+                                        },
+                                        {
+                                          "key": "year"
+                                        },
+                                        {
+                                          "key": "month"
+                                        },
+                                        {
+                                          "key": "day"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"year\": \"<integer>\",\n  \"month\": \"<integer>\",\n  \"day\": \"<integer>\",\n  \"base_code\": \"<string>\",\n  \"conversion_rates\": {\n    \"laborum_3\": \"<number>\"\n  }\n}",
+                                  "createdAt": "2026-06-05T13:14:43.000Z",
+                                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                                  "uid": "35240-338591f2-275c-41fb-8418-3f69338df9ed"
+                                },
+                                {
+                                  "id": "cbff02e9-f7b8-40ca-a08c-8928f93fbe0e",
+                                  "name": "Error response (may include no-data-available, plan-upgrade-required).",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "api_key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/:api_key/history/:base_code/:year/:month/:day",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        ":api_key",
+                                        "history",
+                                        ":base_code",
+                                        ":year",
+                                        ":month",
+                                        ":day"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "api_key"
+                                        },
+                                        {
+                                          "key": "base_code"
+                                        },
+                                        {
+                                          "key": "year"
+                                        },
+                                        {
+                                          "key": "month"
+                                        },
+                                        {
+                                          "key": "day"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                                  "createdAt": "2026-06-05T13:14:43.000Z",
+                                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                                  "uid": "35240-cbff02e9-f7b8-40ca-a08c-8928f93fbe0e"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T13:14:43.000Z",
+                              "updatedAt": "2026-06-05T13:14:43.000Z",
+                              "uid": "35240-6ca0b609-cf96-40d3-85a9-dee91a88a3be"
+                            }
+                          ],
+                          "id": "efe7893c-83bd-4baf-b129-6779e26ce1f4",
+                          "createdAt": "2026-06-05T13:14:43.000Z",
+                          "updatedAt": "2026-06-05T13:14:43.000Z",
+                          "uid": "35240-efe7893c-83bd-4baf-b129-6779e26ce1f4"
+                        }
+                      ],
+                      "id": "fc8e969a-4931-4a4c-b491-224282503925",
+                      "createdAt": "2026-06-05T13:14:43.000Z",
+                      "updatedAt": "2026-06-05T13:14:43.000Z",
+                      "uid": "35240-fc8e969a-4931-4a4c-b491-224282503925"
+                    }
+                  ],
+                  "id": "0a5a4faf-338b-492b-846e-41903984aa15",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-0a5a4faf-338b-492b-846e-41903984aa15"
+                }
+              ],
+              "id": "689c48ab-def5-4dac-bbb0-60aa387ace63",
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-689c48ab-def5-4dac-bbb0-60aa387ace63"
+            }
+          ],
+          "id": "6ee2eabf-77b3-4688-afdf-70364794bc45",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-6ee2eabf-77b3-4688-afdf-70364794bc45"
+        },
+        {
+          "name": "codes",
+          "item": [
+            {
+              "name": "Get Supported Codes",
+              "id": "925375db-6894-4226-9351-9acf8aaab2f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:api_key/codes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":api_key",
+                    "codes"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d1466b52-6c69-4ddc-9f02-8e2561400dfa",
+                      "key": "api_key",
+                      "value": "<string>",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    }
+                  ]
+                },
+                "description": "Returns an array of all supported ISO 4217 currency codes and their full names."
+              },
+              "response": [
+                {
+                  "id": "20ca2e70-f8dc-48df-9e56-dfb783000748",
+                  "name": "Successful response containing supported codes.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:api_key/codes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":api_key",
+                        "codes"
+                      ],
+                      "variable": [
+                        {
+                          "key": "api_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"supported_codes\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ]\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-20ca2e70-f8dc-48df-9e56-dfb783000748"
+                },
+                {
+                  "id": "05e9f59c-3719-4769-8042-5256f1c01e37",
+                  "name": "Error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:api_key/codes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":api_key",
+                        "codes"
+                      ],
+                      "variable": [
+                        {
+                          "key": "api_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-05e9f59c-3719-4769-8042-5256f1c01e37"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-925375db-6894-4226-9351-9acf8aaab2f6"
+            }
+          ],
+          "id": "8c85e18d-df86-480f-8145-cb9d388f17c0",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-8c85e18d-df86-480f-8145-cb9d388f17c0"
+        },
+        {
+          "name": "quota",
+          "item": [
+            {
+              "name": "Get Request Quota",
+              "id": "b1026d0b-a35d-47eb-833b-334f9aead555",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:api_key/quota",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":api_key",
+                    "quota"
+                  ],
+                  "variable": [
+                    {
+                      "id": "944f7bc4-6c5b-4f44-84b4-82cf2193a426",
+                      "key": "api_key",
+                      "value": "<string>",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    }
+                  ]
+                },
+                "description": "Returns the plan quota, number of requests remaining in the current billing window, and refresh metadata for the API key."
+              },
+              "response": [
+                {
+                  "id": "42b5637f-65b1-4885-a577-594aed70b854",
+                  "name": "Successful response with current quota information.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:api_key/quota",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":api_key",
+                        "quota"
+                      ],
+                      "variable": [
+                        {
+                          "key": "api_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"plan_quota\": \"<integer>\",\n  \"requests_remaining\": \"<integer>\",\n  \"refresh_day_of_month\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-42b5637f-65b1-4885-a577-594aed70b854"
+                },
+                {
+                  "id": "6738a4d0-5d40-463b-b066-129683813fc4",
+                  "name": "Error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:api_key/quota",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":api_key",
+                        "quota"
+                      ],
+                      "variable": [
+                        {
+                          "key": "api_key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-6738a4d0-5d40-463b-b066-129683813fc4"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-b1026d0b-a35d-47eb-833b-334f9aead555"
+            }
+          ],
+          "id": "559bf940-17c1-453c-9faf-5c6f4abc996a",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-559bf940-17c1-453c-9faf-5c6f4abc996a"
+        }
+      ],
+      "id": "989f5ace-03bc-4274-a580-90cd31358943",
+      "createdAt": "2026-06-05T13:14:43.000Z",
+      "updatedAt": "2026-06-05T13:14:43.000Z",
+      "uid": "35240-989f5ace-03bc-4274-a580-90cd31358943"
+    },
+    {
+      "name": "latest",
+      "item": [
+        {
+          "name": "{base_code}",
+          "item": [
+            {
+              "name": "Get Open Access Latest Rates",
+              "id": "21456187-535b-4e3d-a24b-619140d35f6a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "https://open.er-api.com/v6/latest/:base_code",
+                  "protocol": "https",
+                  "host": [
+                    "open",
+                    "er-api",
+                    "com"
+                  ],
+                  "path": [
+                    "v6",
+                    "latest",
+                    ":base_code"
+                  ],
+                  "variable": [
+                    {
+                      "id": "96e9a114-953b-424b-bdf6-8e0e98a3eb12",
+                      "key": "base_code",
+                      "value": "FCK",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    }
+                  ]
+                },
+                "description": "Returns the latest exchange rates from a base currency via the no-API-key Open Access endpoint (https://open.er-api.com/v6). Requires attribution back to exchangerate-api.com. Updates once daily and is rate limited."
+              },
+              "response": [
+                {
+                  "id": "b88f680d-b438-4a65-baba-c7977261e000",
+                  "name": "Successful response with conversion rates.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://open.er-api.com/v6/latest/:base_code",
+                      "protocol": "https",
+                      "host": [
+                        "open",
+                        "er-api",
+                        "com"
+                      ],
+                      "path": [
+                        "v6",
+                        "latest",
+                        ":base_code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "base_code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"provider\": \"<uri>\",\n  \"documentation\": \"<uri>\",\n  \"terms_of_use\": \"<uri>\",\n  \"time_last_update_unix\": \"<integer>\",\n  \"time_last_update_utc\": \"<string>\",\n  \"time_next_update_unix\": \"<integer>\",\n  \"time_next_update_utc\": \"<string>\",\n  \"time_eol_unix\": \"<integer>\",\n  \"base_code\": \"<string>\",\n  \"rates\": {\n    \"qui_7\": \"<number>\",\n    \"deserunt_8\": \"<number>\",\n    \"sit_40\": \"<number>\",\n    \"dolorda\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-b88f680d-b438-4a65-baba-c7977261e000"
+                },
+                {
+                  "id": "ff7d8fcf-4f1b-473d-8f95-5584f0e95b7c",
+                  "name": "Rate limit exceeded; retry after 20 minutes.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api_key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://open.er-api.com/v6/latest/:base_code",
+                      "protocol": "https",
+                      "host": [
+                        "open",
+                        "er-api",
+                        "com"
+                      ],
+                      "path": [
+                        "v6",
+                        "latest",
+                        ":base_code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "base_code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": \"<string>\",\n  \"error-type\": \"unsupported-code\"\n}",
+                  "createdAt": "2026-06-05T13:14:43.000Z",
+                  "updatedAt": "2026-06-05T13:14:43.000Z",
+                  "uid": "35240-ff7d8fcf-4f1b-473d-8f95-5584f0e95b7c"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:43.000Z",
+              "updatedAt": "2026-06-05T13:14:43.000Z",
+              "uid": "35240-21456187-535b-4e3d-a24b-619140d35f6a"
+            }
+          ],
+          "id": "0e573270-1869-4062-a1cf-d492e1d7dd31",
+          "createdAt": "2026-06-05T13:14:43.000Z",
+          "updatedAt": "2026-06-05T13:14:43.000Z",
+          "uid": "35240-0e573270-1869-4062-a1cf-d492e1d7dd31"
+        }
+      ],
+      "id": "523c1be2-e731-44ac-91e1-adc0c594fb42",
+      "createdAt": "2026-06-05T13:14:43.000Z",
+      "updatedAt": "2026-06-05T13:14:43.000Z",
+      "uid": "35240-523c1be2-e731-44ac-91e1-adc0c594fb42"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://v6.exchangerate-api.com/v6"
+    }
+  ]
+}

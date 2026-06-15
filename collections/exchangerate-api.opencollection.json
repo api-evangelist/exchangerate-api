@@ -1,0 +1,347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate-API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Latest Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Latest Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/latest/:base_code",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              }
+            ]
+          },
+          "docs": "Returns the latest exchange rates from a given base currency to all supported currencies. Update frequency depends on plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pair Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pair Conversion Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/pair/:base_code/:target_code",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "target_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+              }
+            ]
+          },
+          "docs": "Returns the exchange rate between a base and a target currency."
+        },
+        {
+          "info": {
+            "name": "Get Pair Conversion With Amount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/pair/:base_code/:target_code/:amount",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "target_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "path",
+                "description": "Decimal amount to convert (xxxx.xxxx format)."
+              }
+            ]
+          },
+          "docs": "Returns the exchange rate between a base and a target currency along with the converted amount."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enriched Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Enriched Pair Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/enriched/:base_code/:target_code",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "target_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+              }
+            ]
+          },
+          "docs": "Returns the exchange rate between a base and target currency along with enriched target currency metadata (country locale, two-letter country code, currency name, display symbol, flag URL). Only available on Business and Volume plans."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Historical Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Historical Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/history/:base_code/:year/:month/:day",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "path",
+                "description": "Year for historical data (full four-digit year)."
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "Month for historical data (1-12, no leading zero)."
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "path",
+                "description": "Day for historical data (1-31, no leading zero)."
+              }
+            ]
+          },
+          "docs": "Returns historical exchange rates for the given base currency on the specified date. Full currency support from 2021-01-01 onward; 35 currencies are available from 1990-01-01 to 2020-12-31. Only available on Pro, Business, and Volume plans."
+        },
+        {
+          "info": {
+            "name": "Get Historical Rates With Amount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/history/:base_code/:year/:month/:day/:amount",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "path",
+                "description": "Year for historical data (full four-digit year)."
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "Month for historical data (1-12, no leading zero)."
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "path",
+                "description": "Day for historical data (1-31, no leading zero)."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "path",
+                "description": "Decimal amount to convert (xxxx.xxxx format)."
+              }
+            ]
+          },
+          "docs": "Returns historical exchange rates plus converted amounts for the given base currency on the specified date."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Supported Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Supported Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/codes",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              }
+            ]
+          },
+          "docs": "Returns an array of all supported ISO 4217 currency codes and their full names."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quota",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Request Quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/quota",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              }
+            ]
+          },
+          "docs": "Returns the plan quota, number of requests remaining in the current billing window, and refresh metadata for the API key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Open Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Open Access Latest Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/latest/:base_code",
+            "params": [
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              }
+            ]
+          },
+          "docs": "Returns the latest exchange rates from a base currency via the no-API-key Open Access endpoint (https://open.er-api.com/v6). Requires attribution back to exchangerate-api.com. Updates once daily and is rate limited."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
