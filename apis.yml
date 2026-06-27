@@ -44,7 +44,7 @@ apis:
         url: json-schema/exchangerate-api-latest-rates-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-latest-rates-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-latest-rates-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -71,9 +71,9 @@ apis:
         url: json-schema/exchangerate-api-pair-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-pair-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-pair-conversion-example.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -100,7 +100,7 @@ apis:
         url: json-schema/exchangerate-api-enriched-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-enriched-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-enriched-pair-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -127,9 +127,9 @@ apis:
         url: json-schema/exchangerate-api-historical-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-historical-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-historical-rates-example.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -154,7 +154,7 @@ apis:
         url: json-schema/exchangerate-api-supported-codes-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-supported-codes-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-supported-codes-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -181,7 +181,7 @@ apis:
         url: json-schema/exchangerate-api-quota-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-quota-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-quota-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -208,7 +208,7 @@ apis:
         url: json-schema/exchangerate-api-open-access-schema.json
       - type: JSONStructure
         url: json-structure/exchangerate-api-open-access-structure.json
-      - type: Example
+      - type: Examples
         url: examples/exchangerate-api-get-open-access-latest-example.json
     contact:
       - FN: ExchangeRate-API Support
@@ -217,27 +217,24 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/exchangerate-api/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/exchangerate-api-codes-to-conversion-workflow.yml
-        name: ExchangeRate-API Codes to Conversion
-        summary: Discover supported currencies, pull latest rates, then convert a specific pair.
-      - url: arazzo/exchangerate-api-enriched-pair-display-workflow.yml
-        name: ExchangeRate-API Enriched Pair Display
-        summary: Build a display-ready conversion with currency name, symbol, and flag.
-      - url: arazzo/exchangerate-api-historical-amount-conversion-workflow.yml
-        name: ExchangeRate-API Historical Amount Conversion
-        summary: Convert an amount as it would have valued on a specific past date.
-      - url: arazzo/exchangerate-api-latest-vs-historical-workflow.yml
-        name: ExchangeRate-API Latest vs Historical
-        summary: Compare a base currency's latest rates against its rates on a past date.
-      - url: arazzo/exchangerate-api-pair-amount-conversion-workflow.yml
-        name: ExchangeRate-API Pair Amount Conversion
-        summary: Validate currencies against supported codes, then convert a specific amount.
-      - url: arazzo/exchangerate-api-quota-guarded-rates-workflow.yml
-        name: ExchangeRate-API Quota Guarded Rates
-        summary: Check remaining quota, then use the keyed endpoint or fall back to open access.
+  - type: Arazzo
+    url: arazzo/exchangerate-api-codes-to-conversion-workflow.yml
+    name: ExchangeRate-API Codes to Conversion
+  - type: Arazzo
+    url: arazzo/exchangerate-api-enriched-pair-display-workflow.yml
+    name: ExchangeRate-API Enriched Pair Display
+  - type: Arazzo
+    url: arazzo/exchangerate-api-historical-amount-conversion-workflow.yml
+    name: ExchangeRate-API Historical Amount Conversion
+  - type: Arazzo
+    url: arazzo/exchangerate-api-latest-vs-historical-workflow.yml
+    name: ExchangeRate-API Latest vs Historical
+  - type: Arazzo
+    url: arazzo/exchangerate-api-pair-amount-conversion-workflow.yml
+    name: ExchangeRate-API Pair Amount Conversion
+  - type: Arazzo
+    url: arazzo/exchangerate-api-quota-guarded-rates-workflow.yml
+    name: ExchangeRate-API Quota Guarded Rates
   - type: Website
     url: https://www.exchangerate-api.com
   - type: Documentation
@@ -252,7 +249,7 @@ common:
     url: json-structure/exchangerate-api-error-structure.json
   - type: JSONLD
     url: json-ld/exchangerate-api-context.jsonld
-  - type: Example
+  - type: Examples
     url: examples/exchangerate-api-error-example.json
   - type: Vocabulary
     url: vocabulary/exchangerate-api-vocabulary.yml
@@ -268,7 +265,7 @@ common:
     url: https://www.exchangerate-api.com/docs/overview
   - type: Pricing
     url: https://www.exchangerate-api.com/#pricing
-  - type: SignUp
+  - type: Signup
     url: https://app.exchangerate-api.com/sign-up
   - type: Login
     url: https://app.exchangerate-api.com/sign-in
@@ -280,10 +277,10 @@ common:
     url: https://www.exchangerate-api.com/contact
   - type: Contact
     url: https://www.exchangerate-api.com/contact
-  - type: SDK
+  - type: SDKs
     url: https://www.exchangerate-api.com/docs/python-currency-api
     title: Python Documentation
-  - type: SDK
+  - type: SDKs
     url: https://github.com/EloquentStudio/exchangerate-api-node
     title: Node.js Community SDK
   - type: MCPServer
