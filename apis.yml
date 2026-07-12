@@ -215,6 +215,10 @@ apis:
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
 common:
+  - type: DomainSecurity
+    url: security/exchangerate-api-domain-security.yml
+  - type: Authentication
+    url: authentication/exchangerate-api-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/exchangerate-api/overview
   - type: Arazzo

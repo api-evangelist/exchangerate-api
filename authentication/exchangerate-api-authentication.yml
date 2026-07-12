@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/exchangerate-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - path
+schemes:
+- name: apiKeyPath
+  type: apiKey
+  in: path
+  parameter: api_key
+  description: ExchangeRate-API uses an API key embedded in the URL path (after /v6/).
+  sources:
+  - openapi/exchangerate-api-openapi.yml
