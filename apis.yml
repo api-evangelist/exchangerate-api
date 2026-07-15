@@ -215,6 +215,8 @@ apis:
         email: contact@exchangerate-api.com
         url: https://www.exchangerate-api.com/contact
 common:
+  - type: AgenticAccess
+    url: agentic-access/exchangerate-api-agentic-access.yml
   - type: DomainSecurity
     url: security/exchangerate-api-domain-security.yml
   - type: Authentication

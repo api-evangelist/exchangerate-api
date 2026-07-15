@@ -1,0 +1,104 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/exchangerate-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 9
+  by_action_class:
+    connected: 9
+  by_consequence:
+    read: 9
+  human_in_the_loop_required: 0
+operations:
+- path: /{api_key}/latest/{base_code}
+  method: get
+  operationId: getLatestRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/pair/{base_code}/{target_code}
+  method: get
+  operationId: getPairConversion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/pair/{base_code}/{target_code}/{amount}
+  method: get
+  operationId: getPairConversionWithAmount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/enriched/{base_code}/{target_code}
+  method: get
+  operationId: getEnrichedPair
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/history/{base_code}/{year}/{month}/{day}
+  method: get
+  operationId: getHistoricalRates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/history/{base_code}/{year}/{month}/{day}/{amount}
+  method: get
+  operationId: getHistoricalRatesWithAmount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/codes
+  method: get
+  operationId: getSupportedCodes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{api_key}/quota
+  method: get
+  operationId: getQuota
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /latest/{base_code}
+  method: get
+  operationId: getOpenAccessLatest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
