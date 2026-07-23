@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: ExchangeRate Enriched Data Pair Conversion API
+  description: ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.
+  version: 6.0.0
+  termsOfService: https://www.exchangerate-api.com/terms
+  contact:
+    name: ExchangeRate-API Support
+    url: https://www.exchangerate-api.com/contact
+    email: contact@exchangerate-api.com
+  license:
+    name: Proprietary
+    url: https://www.exchangerate-api.com/terms
+servers:
+- url: https://v6.exchangerate-api.com/v6
+  description: ExchangeRate-API v6 Production (API key required)
+- url: https://open.er-api.com/v6
+  description: ExchangeRate-API Open Access (no API key, attribution required)
+security:
+- apiKeyPath: []
+tags:
+- name: Pair Conversion
+  description: Direct currency-to-currency exchange rate and optional amount conversion.
+paths:
+  /{api_key}/pair/{base_code}/{target_code}:
+    get:
+      tags:
+      - Pair Conversion
+      summary: Get Pair Conversion Rate
+      description: Returns the exchange rate between a base and a target currency.
+      operationId: getPairConversion
+      parameters:
+      - $ref: '#/components/parameters/ApiKey'
+      - $ref: '#/components/parameters/BaseCode'
+      - $ref: '#/components/parameters/TargetCode'
+      responses:
+        '200':
+          description: Successful response with conversion rate for the currency pair.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PairResponse'
+        '400':
+          description: Error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /{api_key}/pair/{base_code}/{target_code}/{amount}:
+    get:
+      tags:
+      - Pair Conversion
+      summary: Get Pair Conversion With Amount
+      description: Returns the exchange rate between a base and a target currency along with the converted amount.
+      operationId: getPairConversionWithAmount
+      parameters:
+      - $ref: '#/components/parameters/ApiKey'
+      - $ref: '#/components/parameters/BaseCode'
+      - $ref: '#/components/parameters/TargetCode'
+      - $ref: '#/components/parameters/Amount'
+      responses:
+        '200':
+          description: Successful response with conversion rate and converted amount.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PairAmountResponse'
+        '400':
+          description: Error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    Amount:
+      name: amount
+      in: path
+      required: true
+      description: Decimal amount to convert (xxxx.xxxx format).
+      schema:
+        type: number
+        format: double
+        example: 100.0
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
+    TargetCode:
+      name: target_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the target currency (e.g. EUR).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: EUR
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
+    PairAmountResponse:
+      allOf:
+      - $ref: '#/components/schemas/PairResponse'
+      - type: object
+        description: Pair conversion with additional converted amount.
+        properties:
+          conversion_result:
+            type: number
+            description: Result of converting the requested amount at the current rate.
+    PairResponse:
+      type: object
+      description: Pair conversion response without amount.
+      properties:
+        result:
+          type: string
+          description: Status indicator.
+        documentation:
+          type: string
+          format: uri
+          description: Link to the API documentation.
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use.
+        time_last_update_unix:
+          type: integer
+          description: Last update Unix timestamp.
+        time_last_update_utc:
+          type: string
+          description: Last update in UTC.
+        time_next_update_unix:
+          type: integer
+          description: Next update Unix timestamp.
+        time_next_update_utc:
+          type: string
+          description: Next update in UTC.
+        base_code:
+          type: string
+          description: Supplied base currency.
+        target_code:
+          type: string
+          description: Supplied target currency.
+        conversion_rate:
+          type: number
+          description: Exchange rate between base and target.
+  securitySchemes:
+    apiKeyPath:
+      type: apiKey
+      in: path
+      name: api_key
+      description: ExchangeRate-API uses an API key embedded in the URL path (after /v6/).

@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: ExchangeRate Enriched Data Latest Rates API
+  description: ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.
+  version: 6.0.0
+  termsOfService: https://www.exchangerate-api.com/terms
+  contact:
+    name: ExchangeRate-API Support
+    url: https://www.exchangerate-api.com/contact
+    email: contact@exchangerate-api.com
+  license:
+    name: Proprietary
+    url: https://www.exchangerate-api.com/terms
+servers:
+- url: https://v6.exchangerate-api.com/v6
+  description: ExchangeRate-API v6 Production (API key required)
+- url: https://open.er-api.com/v6
+  description: ExchangeRate-API Open Access (no API key, attribution required)
+security:
+- apiKeyPath: []
+tags:
+- name: Latest Rates
+  description: Standard endpoint returning latest exchange rates from a base currency to all supported currencies.
+paths:
+  /{api_key}/latest/{base_code}:
+    get:
+      tags:
+      - Latest Rates
+      summary: Get Latest Rates
+      description: Returns the latest exchange rates from a given base currency to all supported currencies. Update frequency depends on plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume).
+      operationId: getLatestRates
+      parameters:
+      - $ref: '#/components/parameters/ApiKey'
+      - $ref: '#/components/parameters/BaseCode'
+      responses:
+        '200':
+          description: Successful response with conversion rates for the base currency.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestRatesResponse'
+        '400':
+          description: Error response (malformed request, invalid key, etc.).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
+    LatestRatesResponse:
+      type: object
+      description: Latest exchange rates response.
+      properties:
+        result:
+          type: string
+          description: Status indicator (success).
+          example: success
+        documentation:
+          type: string
+          format: uri
+          description: Link to the API documentation.
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use.
+        time_last_update_unix:
+          type: integer
+          description: Last update time as a Unix timestamp.
+        time_last_update_utc:
+          type: string
+          description: Last update time in UTC.
+        time_next_update_unix:
+          type: integer
+          description: Next scheduled update as a Unix timestamp.
+        time_next_update_utc:
+          type: string
+          description: Next scheduled update in UTC.
+        base_code:
+          type: string
+          description: The base currency requested.
+        conversion_rates:
+          type: object
+          description: Object mapping ISO 4217 currency codes to exchange rates from the base currency.
+          additionalProperties:
+            type: number
+  securitySchemes:
+    apiKeyPath:
+      type: apiKey
+      in: path
+      name: api_key
+      description: ExchangeRate-API uses an API key embedded in the URL path (after /v6/).

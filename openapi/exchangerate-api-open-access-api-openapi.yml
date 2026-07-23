@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: ExchangeRate Enriched Data Open Access API
+  description: ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.
+  version: 6.0.0
+  termsOfService: https://www.exchangerate-api.com/terms
+  contact:
+    name: ExchangeRate-API Support
+    url: https://www.exchangerate-api.com/contact
+    email: contact@exchangerate-api.com
+  license:
+    name: Proprietary
+    url: https://www.exchangerate-api.com/terms
+servers:
+- url: https://v6.exchangerate-api.com/v6
+  description: ExchangeRate-API v6 Production (API key required)
+- url: https://open.er-api.com/v6
+  description: ExchangeRate-API Open Access (no API key, attribution required)
+security:
+- apiKeyPath: []
+tags:
+- name: Open Access
+  description: Free no-key endpoint with once-daily rates and attribution requirement.
+paths:
+  /latest/{base_code}:
+    get:
+      tags:
+      - Open Access
+      summary: Get Open Access Latest Rates
+      description: Returns the latest exchange rates from a base currency via the no-API-key Open Access endpoint (https://open.er-api.com/v6). Requires attribution back to exchangerate-api.com. Updates once daily and is rate limited.
+      operationId: getOpenAccessLatest
+      servers:
+      - url: https://open.er-api.com/v6
+      parameters:
+      - $ref: '#/components/parameters/BaseCode'
+      responses:
+        '200':
+          description: Successful response with conversion rates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenAccessResponse'
+        '429':
+          description: Rate limit exceeded; retry after 20 minutes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
+  schemas:
+    OpenAccessResponse:
+      type: object
+      description: Open Access (no-key) response.
+      properties:
+        result:
+          type: string
+          description: Status indicator.
+        provider:
+          type: string
+          format: uri
+          description: Provider attribution URL (exchangerate-api.com).
+        documentation:
+          type: string
+          format: uri
+          description: Link to the documentation.
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use.
+        time_last_update_unix:
+          type: integer
+          description: Last update Unix timestamp.
+        time_last_update_utc:
+          type: string
+          description: Last update in UTC.
+        time_next_update_unix:
+          type: integer
+          description: Next update Unix timestamp.
+        time_next_update_utc:
+          type: string
+          description: Next update in UTC.
+        time_eol_unix:
+          type: integer
+          description: End of life Unix timestamp for the response data (if applicable).
+        base_code:
+          type: string
+          description: The base currency requested.
+        rates:
+          type: object
+          description: Object mapping ISO 4217 currency codes to exchange rates from the base currency.
+          additionalProperties:
+            type: number
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
+  securitySchemes:
+    apiKeyPath:
+      type: apiKey
+      in: path
+      name: api_key
+      description: ExchangeRate-API uses an API key embedded in the URL path (after /v6/).
