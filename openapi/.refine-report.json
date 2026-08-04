@@ -1,0 +1,26 @@
+{
+  "provider": "exchangerate-api",
+  "sources": [
+    "exchangerate-api-enriched-data-api-openapi.yml",
+    "exchangerate-api-historical-rates-api-openapi.yml",
+    "exchangerate-api-latest-rates-api-openapi.yml",
+    "exchangerate-api-open-access-api-openapi.yml",
+    "exchangerate-api-pair-conversion-api-openapi.yml",
+    "exchangerate-api-quota-api-openapi.yml",
+    "exchangerate-api-supported-codes-api-openapi.yml"
+  ],
+  "outputs": [
+    "exchangerate-api-enriched-data-api-openapi.yml",
+    "exchangerate-api-historical-rates-api-openapi.yml",
+    "exchangerate-api-latest-rates-api-openapi.yml",
+    "exchangerate-api-open-access-api-openapi.yml",
+    "exchangerate-api-pair-conversion-api-openapi.yml",
+    "exchangerate-api-quota-api-openapi.yml",
+    "exchangerate-api-supported-codes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
