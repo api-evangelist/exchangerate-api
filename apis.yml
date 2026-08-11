@@ -564,7 +564,7 @@ common:
   - type: APIReference
     url: https://www.exchangerate-api.com/docs/overview
   - type: OpenAPI
-    url: openapi/exchangerate-api-openapi.yml
+    url: openapi/_original/exchangerate-api-openapi.yml
   - type: JSONSchema
     url: json-schema/exchangerate-api-error-schema.json
   - type: JSONStructure
