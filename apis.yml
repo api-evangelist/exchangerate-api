@@ -19,7 +19,7 @@ accessModel:
   method: derived
 image: https://www.exchangerate-api.com/img/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/exchangerate-api/refs/heads/main/apis.yml
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-05-29'
 type: Index
