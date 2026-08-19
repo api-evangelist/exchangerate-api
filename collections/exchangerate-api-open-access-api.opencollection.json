@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate Enriched Data Open Access API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Open Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Open Access Latest Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/latest/:base_code",
+            "params": [
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              }
+            ]
+          },
+          "docs": "Returns the latest exchange rates from a base currency via the no-API-key Open Access endpoint (https://open.er-api.com/v6). Requires attribution back to exchangerate-api.com. Updates once daily and is rate limited."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "9a39011c-0fcb-4131-8f03-50390ce919e7",
+      "name": "Open Access",
+      "description": {
+        "content": "Free no-key endpoint with once-daily rates and attribution requirement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47f605ff-7969-4516-b5e9-838a5c885b5b",
+          "name": "Get Open Access Latest Rates",
+          "request": {
+            "name": "Get Open Access Latest Rates",
+            "description": {
+              "content": "Returns the latest exchange rates from a base currency via the no-API-key Open Access endpoint (https://open.er-api.com/v6). Requires attribution back to exchangerate-api.com. Updates once daily and is rate limited.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v6",
+                "latest",
+                ":base_code"
+              ],
+              "host": [
+                "open",
+                "er-api",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "base_code",
+                  "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "671641f1-2eb2-4eb3-90a9-b153e5c3c7cf",
+              "name": "Successful response with conversion rates.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v6",
+                    "latest",
+                    ":base_code"
+                  ],
+                  "host": [
+                    "open",
+                    "er-api",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"provider\": \"http://BVbutuvrRUaNTnOtoTNtBvvWlWi.kmd0q7Gvi7H5BcNf,F0CDRNhjZvJGK,2JpxA4SR7\",\n  \"documentation\": \"https://jRwyutCRnUugRCzbSMarvPmvFNw.ngncHjPzC5Qp1OKNw4lx+4l8\",\n  \"terms_of_use\": \"https://szaAbtQrphEBCLp.xztv+pI8uk,WCy2C6P.UXlmanPK0O-nLGCTiI0Pe-J\",\n  \"time_last_update_unix\": 6247,\n  \"time_last_update_utc\": \"string\",\n  \"time_next_update_unix\": 8958,\n  \"time_next_update_utc\": \"string\",\n  \"time_eol_unix\": 3838,\n  \"base_code\": \"string\",\n  \"rates\": {\n    \"key_0\": 2129.483793323672,\n    \"key_1\": 7635.847691680117,\n    \"key_2\": 9077.8934139923,\n    \"key_3\": 3284.388276341953\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41a21ffe-b86f-49d3-9527-04aba9a77cd7",
+              "name": "Rate limit exceeded; retry after 20 minutes.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v6",
+                    "latest",
+                    ":base_code"
+                  ],
+                  "host": [
+                    "open",
+                    "er-api",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"error\",\n  \"error-type\": \"malformed-request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://v6.exchangerate-api.com/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7166896-17ea-47b9-8c70-d68e66de8e33",
+    "name": "ExchangeRate Enriched Data Open Access API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.\n\nContact Support:\n Name: ExchangeRate-API Support\n Email: contact@exchangerate-api.com",
+      "type": "text/plain"
+    }
+  }
+}

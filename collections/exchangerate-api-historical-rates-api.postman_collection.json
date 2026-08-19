@@ -1,0 +1,561 @@
+{
+  "item": [
+    {
+      "id": "a5e2da57-cb7c-4302-b851-3c3d1aeb155b",
+      "name": "Historical Rates",
+      "description": {
+        "content": "Historical exchange rates for a specific date back to 1990 (Pro / Business / Volume plans only).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d82e55a4-888e-4f18-bb02-077a72a28a59",
+          "name": "Get Historical Rates",
+          "request": {
+            "name": "Get Historical Rates",
+            "description": {
+              "content": "Returns historical exchange rates for the given base currency on the specified date. Full currency support from 2021-01-01 onward; 35 currencies are available from 1990-01-01 to 2020-12-31. Only available on Pro, Business, and Volume plans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":api_key",
+                "history",
+                ":base_code",
+                ":year",
+                ":month",
+                ":day"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key",
+                  "description": "(Required) Your ExchangeRate-API dashboard API key."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "base_code",
+                  "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "year",
+                  "description": "(Required) Year for historical data (full four-digit year)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "month",
+                  "description": "(Required) Month for historical data (1-12, no leading zero)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "day",
+                  "description": "(Required) Day for historical data (1-31, no leading zero)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b730fed-0cae-47d2-a19b-5da0ac23055f",
+              "name": "Successful response with historical rates for the given date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":api_key",
+                    "history",
+                    ":base_code",
+                    ":year",
+                    ":month",
+                    ":day"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "year",
+                      "description": "(Required) Year for historical data (full four-digit year)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "month",
+                      "description": "(Required) Month for historical data (1-12, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "day",
+                      "description": "(Required) Day for historical data (1-31, no leading zero)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"documentation\": \"http://VEchCBLZhEgL.gxRC5HMNE.Md\",\n  \"terms_of_use\": \"https://TyvMaacMzgAnVUMmlevJruVCLIMU.eykmMm\",\n  \"year\": 1344,\n  \"month\": 54,\n  \"day\": 9928,\n  \"base_code\": \"string\",\n  \"conversion_rates\": {\n    \"key_0\": 2106.3992868900436\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7b1a8d1-06f2-4c3f-954e-f63562aacd49",
+              "name": "Error response (may include no-data-available, plan-upgrade-required).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":api_key",
+                    "history",
+                    ":base_code",
+                    ":year",
+                    ":month",
+                    ":day"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "year",
+                      "description": "(Required) Year for historical data (full four-digit year)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "month",
+                      "description": "(Required) Month for historical data (1-12, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "day",
+                      "description": "(Required) Day for historical data (1-31, no leading zero)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"error\",\n  \"error-type\": \"no-data-available\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "410808e9-639f-478b-b1d0-56dd6d13a6dc",
+          "name": "Get Historical Rates With Amount",
+          "request": {
+            "name": "Get Historical Rates With Amount",
+            "description": {
+              "content": "Returns historical exchange rates plus converted amounts for the given base currency on the specified date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":api_key",
+                "history",
+                ":base_code",
+                ":year",
+                ":month",
+                ":day",
+                ":amount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key",
+                  "description": "(Required) Your ExchangeRate-API dashboard API key."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "base_code",
+                  "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "year",
+                  "description": "(Required) Year for historical data (full four-digit year)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "month",
+                  "description": "(Required) Month for historical data (1-12, no leading zero)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "day",
+                  "description": "(Required) Day for historical data (1-31, no leading zero)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "amount",
+                  "description": "(Required) Decimal amount to convert (xxxx.xxxx format)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cd9c0d8-f5b6-4538-ab94-c3ef79a0a16f",
+              "name": "Successful response with historical rates and converted amounts for the given date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":api_key",
+                    "history",
+                    ":base_code",
+                    ":year",
+                    ":month",
+                    ":day",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "year",
+                      "description": "(Required) Year for historical data (full four-digit year)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "month",
+                      "description": "(Required) Month for historical data (1-12, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "day",
+                      "description": "(Required) Day for historical data (1-31, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "amount",
+                      "description": "(Required) Decimal amount to convert (xxxx.xxxx format)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"documentation\": \"http://fqU.ldcgZ6dmBCh\",\n  \"terms_of_use\": \"https://CuliXTZ.qoX,AAo\",\n  \"year\": 4397,\n  \"month\": 7198,\n  \"day\": 3345,\n  \"base_code\": \"string\",\n  \"requested_amount\": 4421.7279124356955,\n  \"conversion_amounts\": {\n    \"key_0\": 5162.082860632078,\n    \"key_1\": 537.1393042670702\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48248a89-52b2-4efa-bddc-d7242da419ca",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":api_key",
+                    "history",
+                    ":base_code",
+                    ":year",
+                    ":month",
+                    ":day",
+                    ":amount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key",
+                      "description": "(Required) Your ExchangeRate-API dashboard API key."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "base_code",
+                      "description": "(Required) ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "year",
+                      "description": "(Required) Year for historical data (full four-digit year)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "month",
+                      "description": "(Required) Month for historical data (1-12, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "day",
+                      "description": "(Required) Day for historical data (1-31, no leading zero)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "amount",
+                      "description": "(Required) Decimal amount to convert (xxxx.xxxx format)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api_key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"error\",\n  \"error-type\": \"no-data-available\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://v6.exchangerate-api.com/v6",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f12d15f5-2148-44f8-a9e3-6d7002dc35d5",
+    "name": "ExchangeRate Enriched Data Historical Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.\n\nContact Support:\n Name: ExchangeRate-API Support\n Email: contact@exchangerate-api.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate Enriched Data Historical Rates API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Historical Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Historical Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/history/:base_code/:year/:month/:day",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "path",
+                "description": "Year for historical data (full four-digit year)."
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "Month for historical data (1-12, no leading zero)."
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "path",
+                "description": "Day for historical data (1-31, no leading zero)."
+              }
+            ]
+          },
+          "docs": "Returns historical exchange rates for the given base currency on the specified date. Full currency support from 2021-01-01 onward; 35 currencies are available from 1990-01-01 to 2020-12-31. Only available on Pro, Business, and Volume plans."
+        },
+        {
+          "info": {
+            "name": "Get Historical Rates With Amount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/history/:base_code/:year/:month/:day/:amount",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "path",
+                "description": "Year for historical data (full four-digit year)."
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "Month for historical data (1-12, no leading zero)."
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "path",
+                "description": "Day for historical data (1-31, no leading zero)."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "path",
+                "description": "Decimal amount to convert (xxxx.xxxx format)."
+              }
+            ]
+          },
+          "docs": "Returns historical exchange rates plus converted amounts for the given base currency on the specified date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

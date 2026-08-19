@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate Enriched Data Supported Codes API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Supported Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Supported Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/codes",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              }
+            ]
+          },
+          "docs": "Returns an array of all supported ISO 4217 currency codes and their full names."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate Enriched Data Latest Rates API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Latest Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Latest Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/latest/:base_code",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              }
+            ]
+          },
+          "docs": "Returns the latest exchange rates from a given base currency to all supported currencies. Update frequency depends on plan tier (daily on Free, hourly on Pro, every 5 minutes on Business / Volume)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

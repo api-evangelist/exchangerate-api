@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ExchangeRate Enriched Data Pair Conversion API",
+    "version": "6.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pair Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pair Conversion Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/pair/:base_code/:target_code",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "target_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+              }
+            ]
+          },
+          "docs": "Returns the exchange rate between a base and a target currency."
+        },
+        {
+          "info": {
+            "name": "Get Pair Conversion With Amount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://v6.exchangerate-api.com/v6/:api_key/pair/:base_code/:target_code/:amount",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "path",
+                "description": "Your ExchangeRate-API dashboard API key."
+              },
+              {
+                "name": "base_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the base currency (e.g. USD)."
+              },
+              {
+                "name": "target_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 4217 three-letter currency code for the target currency (e.g. EUR)."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "path",
+                "description": "Decimal amount to convert (xxxx.xxxx format)."
+              }
+            ]
+          },
+          "docs": "Returns the exchange rate between a base and a target currency along with the converted amount."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
