@@ -11,8 +11,11 @@ info:
     flow can be read and executed on its own.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: historicalRatesApi
+  url: ../openapi/exchangerate-api-historical-rates-api-openapi.yml
+  type: openapi
+- name: latestRatesApi
+  url: ../openapi/exchangerate-api-latest-rates-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: latest-vs-historical

@@ -12,8 +12,14 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: latestRatesApi
+  url: ../openapi/exchangerate-api-latest-rates-api-openapi.yml
+  type: openapi
+- name: pairConversionApi
+  url: ../openapi/exchangerate-api-pair-conversion-api-openapi.yml
+  type: openapi
+- name: supportedCodesApi
+  url: ../openapi/exchangerate-api-supported-codes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: codes-to-conversion

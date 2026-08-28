@@ -11,8 +11,11 @@ info:
     so the flow is self-describing.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: pairConversionApi
+  url: ../openapi/exchangerate-api-pair-conversion-api-openapi.yml
+  type: openapi
+- name: supportedCodesApi
+  url: ../openapi/exchangerate-api-supported-codes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: pair-amount-conversion

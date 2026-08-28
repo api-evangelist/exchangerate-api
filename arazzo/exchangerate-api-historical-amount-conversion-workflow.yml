@@ -12,8 +12,11 @@ info:
     inlines its full request, including the API key path parameter.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: historicalRatesApi
+  url: ../openapi/exchangerate-api-historical-rates-api-openapi.yml
+  type: openapi
+- name: supportedCodesApi
+  url: ../openapi/exchangerate-api-supported-codes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: historical-amount-conversion

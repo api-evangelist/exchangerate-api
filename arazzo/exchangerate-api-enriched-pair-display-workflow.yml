@@ -12,8 +12,14 @@ info:
     including the API key path parameter.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: enrichedDataApi
+  url: ../openapi/exchangerate-api-enriched-data-api-openapi.yml
+  type: openapi
+- name: latestRatesApi
+  url: ../openapi/exchangerate-api-latest-rates-api-openapi.yml
+  type: openapi
+- name: supportedCodesApi
+  url: ../openapi/exchangerate-api-supported-codes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enriched-pair-display

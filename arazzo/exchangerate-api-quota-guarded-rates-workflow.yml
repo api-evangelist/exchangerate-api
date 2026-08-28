@@ -11,8 +11,14 @@ info:
     full request, including the API key path parameter where applicable.
   version: 1.0.0
 sourceDescriptions:
-- name: exchangeRateApi
-  url: ../openapi/exchangerate-api-openapi.yml
+- name: latestRatesApi
+  url: ../openapi/exchangerate-api-latest-rates-api-openapi.yml
+  type: openapi
+- name: openAccessApi
+  url: ../openapi/exchangerate-api-open-access-api-openapi.yml
+  type: openapi
+- name: quotaApi
+  url: ../openapi/exchangerate-api-quota-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: quota-guarded-rates
