@@ -4,6 +4,18 @@ description: >-
   ExchangeRate-API is a currency exchange rates API providing authoritative daily and intraday foreign exchange rates
   for 161 currencies. The v6 surface includes Latest, Pair, Enriched, Historical, Supported Codes, and Quota endpoints,
   plus a no-API-key Open Access endpoint at open.er-api.com that requires attribution.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
