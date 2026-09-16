@@ -47,7 +47,9 @@ tags:
 apis:
 - aid: exchangerate-api:exchangerate-api-enriched-data-api
   name: ExchangeRate-API Enriched Data API
-  description: Pair conversion enriched with target currency locale, name, symbol, and flag (Business / Volume plans only).
+  description: >-
+    Pair conversion enriched with target currency locale, name, symbol, and flag (Business / Volume plans
+    only).
   humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
@@ -117,7 +119,8 @@ apis:
     url: examples/exchangerate-api-get-open-access-latest-example.json
 - aid: exchangerate-api:exchangerate-api-historical-rates-api
   name: ExchangeRate-API Historical Rates API
-  description: Historical exchange rates for a specific date back to 1990 (Pro / Business / Volume plans only).
+  description: >-
+    Historical exchange rates for a specific date back to 1990 (Pro / Business / Volume plans only).
   humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
@@ -187,7 +190,8 @@ apis:
     url: examples/exchangerate-api-get-open-access-latest-example.json
 - aid: exchangerate-api:exchangerate-api-latest-rates-api
   name: ExchangeRate-API Latest Rates API
-  description: Standard endpoint returning latest exchange rates from a base currency to all supported currencies.
+  description: >-
+    Standard endpoint returning latest exchange rates from a base currency to all supported currencies.
   humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
@@ -535,16 +539,16 @@ apis:
     url: json-structure/exchangerate-api-open-access-structure.json
   - type: Examples
     url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-account-api
+- aid: exchangerate-api:exchangerate-api-account-api
   name: ExchangeRate-API Account API
   description: API quota and account information
-  humanURL: https://www.exchangerate-api.com
+  humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
   - Account
   properties:
   - type: OpenAPI
-    url: openapi/exchangerate-account-api-openapi.yml
+    url: openapi/exchangerate-api-account-api-openapi.yml
   - type: Documentation
     url: https://www.exchangerate-api.com/docs/overview
   - type: OpenAccess
@@ -569,18 +573,16 @@ apis:
     url: vocabulary/exchangerate-vocabulary.yml
   - type: JSONLDContext
     url: json-ld/exchangerate-context.jsonld
-- aid: exchangerate-api:exchangerate-currencies-api
+- aid: exchangerate-api:exchangerate-api-currencies-api
   name: ExchangeRate-API Currencies API
   description: Supported currency codes and metadata
-  humanURL: https://www.exchangerate-api.com
+  humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
-  - Currency
-  tags_raw:
   - Currencies
   properties:
   - type: OpenAPI
-    url: openapi/exchangerate-currencies-api-openapi.yml
+    url: openapi/exchangerate-api-currencies-api-openapi.yml
   - type: Documentation
     url: https://www.exchangerate-api.com/docs/overview
   - type: OpenAccess
@@ -605,16 +607,16 @@ apis:
     url: vocabulary/exchangerate-vocabulary.yml
   - type: JSONLDContext
     url: json-ld/exchangerate-context.jsonld
-- aid: exchangerate-api:exchangerate-exchange-rates-api
+- aid: exchangerate-api:exchangerate-api-exchange-rates-api
   name: ExchangeRate-API Exchange Rates API
   description: Real-time and historical currency exchange rate endpoints
-  humanURL: https://www.exchangerate-api.com
+  humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
   - Exchange Rates
   properties:
   - type: OpenAPI
-    url: openapi/exchangerate-exchange-rates-api-openapi.yml
+    url: openapi/exchangerate-api-exchange-rates-api-openapi.yml
   - type: Documentation
     url: https://www.exchangerate-api.com/docs/overview
   - type: OpenAccess
