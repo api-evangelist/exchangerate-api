@@ -579,6 +579,8 @@ apis:
   humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
+  - Currency
+  tags_raw:
   - Currencies
   properties:
   - type: OpenAPI
