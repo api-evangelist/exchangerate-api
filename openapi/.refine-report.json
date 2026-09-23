@@ -1,26 +1,41 @@
 {
   "provider": "exchangerate-api",
   "sources": [
-    "exchangerate-api-enriched-data-api-openapi.yml",
-    "exchangerate-api-historical-rates-api-openapi.yml",
-    "exchangerate-api-latest-rates-api-openapi.yml",
-    "exchangerate-api-open-access-api-openapi.yml",
-    "exchangerate-api-pair-conversion-api-openapi.yml",
-    "exchangerate-api-quota-api-openapi.yml",
-    "exchangerate-api-supported-codes-api-openapi.yml"
+    "_original/exchangerate-account-api-openapi.yml",
+    "_original/exchangerate-api-openapi.yml",
+    "_original/exchangerate-currencies-api-openapi.yml",
+    "_original/exchangerate-exchange-rates-api-openapi.yml"
   ],
   "outputs": [
+    "exchangerate-api-account-api-openapi.yml",
     "exchangerate-api-enriched-data-api-openapi.yml",
     "exchangerate-api-historical-rates-api-openapi.yml",
     "exchangerate-api-latest-rates-api-openapi.yml",
     "exchangerate-api-open-access-api-openapi.yml",
     "exchangerate-api-pair-conversion-api-openapi.yml",
     "exchangerate-api-quota-api-openapi.yml",
-    "exchangerate-api-supported-codes-api-openapi.yml"
+    "exchangerate-api-supported-codes-api-openapi.yml",
+    "exchangerate-api-currencies-api-openapi.yml",
+    "exchangerate-api-exchange-rates-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "exchangerate-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "exchangerate-api-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-currencies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-enriched-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-exchange-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-historical-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-latest-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-open-access-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-pair-conversion-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-quota-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "exchangerate-api-supported-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

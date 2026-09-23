@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ExchangeRate Enriched Data Historical Rates API
+  title: ExchangeRate Historical Rates API
   description: ExchangeRate-API is a currency exchange rate API providing authoritative daily and intraday foreign exchange rates for 161 currencies. The v6 API surface includes Standard (Latest) rates, Pair conversion, Enriched data (locale, symbol, flag), Historical rates back to 1990, Supported codes, and an API request Quota endpoint. A separate no-key Open Access endpoint (open.er-api.com) provides once-daily rates with attribution.
   version: 6.0.0
   termsOfService: https://www.exchangerate-api.com/terms
@@ -76,61 +76,39 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    Month:
-      name: month
-      in: path
-      required: true
-      description: Month for historical data (1-12, no leading zero).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 12
-        example: 3
-    Amount:
-      name: amount
-      in: path
-      required: true
-      description: Decimal amount to convert (xxxx.xxxx format).
-      schema:
-        type: number
-        format: double
-        example: 100.0
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
-    Day:
-      name: day
-      in: path
-      required: true
-      description: Day for historical data (1-31, no leading zero).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 31
-        example: 15
-    BaseCode:
-      name: base_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: USD
-    Year:
-      name: year
-      in: path
-      required: true
-      description: Year for historical data (full four-digit year).
-      schema:
-        type: integer
-        example: 2024
   schemas:
+    HistoricalRatesResponse:
+      type: object
+      description: Historical rates response for a specific date.
+      properties:
+        result:
+          type: string
+          description: Status indicator.
+        documentation:
+          type: string
+          format: uri
+          description: Link to the documentation.
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use.
+        year:
+          type: integer
+          description: Year of the historical record.
+        month:
+          type: integer
+          description: Month of the historical record.
+        day:
+          type: integer
+          description: Day of the historical record.
+        base_code:
+          type: string
+          description: Base currency for the rates.
+        conversion_rates:
+          type: object
+          description: Mapping of ISO 4217 currency codes to historical exchange rates.
+          additionalProperties:
+            type: number
     HistoricalAmountsResponse:
       type: object
       description: Historical rates with converted amounts.
@@ -185,38 +163,60 @@ components:
           - quota-reached
           - plan-upgrade-required
           - no-data-available
-    HistoricalRatesResponse:
-      type: object
-      description: Historical rates response for a specific date.
-      properties:
-        result:
-          type: string
-          description: Status indicator.
-        documentation:
-          type: string
-          format: uri
-          description: Link to the documentation.
-        terms_of_use:
-          type: string
-          format: uri
-          description: Link to the terms of use.
-        year:
-          type: integer
-          description: Year of the historical record.
-        month:
-          type: integer
-          description: Month of the historical record.
-        day:
-          type: integer
-          description: Day of the historical record.
-        base_code:
-          type: string
-          description: Base currency for the rates.
-        conversion_rates:
-          type: object
-          description: Mapping of ISO 4217 currency codes to historical exchange rates.
-          additionalProperties:
-            type: number
+  parameters:
+    Day:
+      name: day
+      in: path
+      required: true
+      description: Day for historical data (1-31, no leading zero).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 31
+        example: 15
+    Year:
+      name: year
+      in: path
+      required: true
+      description: Year for historical data (full four-digit year).
+      schema:
+        type: integer
+        example: 2024
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
+    Month:
+      name: month
+      in: path
+      required: true
+      description: Month for historical data (1-12, no leading zero).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 12
+        example: 3
+    Amount:
+      name: amount
+      in: path
+      required: true
+      description: Decimal amount to convert (xxxx.xxxx format).
+      schema:
+        type: number
+        format: double
+        example: 100.0
   securitySchemes:
     apiKeyPath:
       type: apiKey
