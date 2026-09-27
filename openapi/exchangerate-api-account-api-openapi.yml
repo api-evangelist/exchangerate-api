@@ -69,29 +69,6 @@ components:
           format: uri
           description: Link to the terms of use
           example: https://www.exchangerate-api.com/terms
-    ResultError:
-      type: string
-      enum:
-      - error
-      description: Indicates the request failed
-    ErrorResponse:
-      type: object
-      required:
-      - result
-      - error-type
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultError'
-        error-type:
-          type: string
-          description: Machine-readable error code
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          example: invalid-key
     ResultSuccess:
       type: string
       enum:
@@ -121,6 +98,29 @@ components:
             minimum: 1
             maximum: 31
             example: 1
+    ResultError:
+      type: string
+      enum:
+      - error
+      description: Indicates the request failed
+    ErrorResponse:
+      type: object
+      required:
+      - result
+      - error-type
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultError'
+        error-type:
+          type: string
+          description: Machine-readable error code
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          example: invalid-key
   parameters:
     apiKey:
       name: apiKey

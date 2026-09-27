@@ -65,50 +65,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    BaseMetadata:
-      type: object
-      description: Common metadata fields returned in all successful responses
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultSuccess'
-        documentation:
-          type: string
-          format: uri
-          description: Link to the API documentation
-          example: https://www.exchangerate-api.com/docs
-        terms_of_use:
-          type: string
-          format: uri
-          description: Link to the terms of use
-          example: https://www.exchangerate-api.com/terms
-    ResultError:
-      type: string
-      enum:
-      - error
-      description: Indicates the request failed
-    ErrorResponse:
-      type: object
-      required:
-      - result
-      - error-type
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultError'
-        error-type:
-          type: string
-          description: Machine-readable error code
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          example: invalid-key
-    ResultSuccess:
-      type: string
-      enum:
-      - success
-      description: Indicates the request was successful
     SupportedCodesResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -135,6 +91,50 @@ components:
               - US Dollar
             - - EUR
               - Euro
+    BaseMetadata:
+      type: object
+      description: Common metadata fields returned in all successful responses
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultSuccess'
+        documentation:
+          type: string
+          format: uri
+          description: Link to the API documentation
+          example: https://www.exchangerate-api.com/docs
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use
+          example: https://www.exchangerate-api.com/terms
+    ResultSuccess:
+      type: string
+      enum:
+      - success
+      description: Indicates the request was successful
+    ResultError:
+      type: string
+      enum:
+      - error
+      description: Indicates the request failed
+    ErrorResponse:
+      type: object
+      required:
+      - result
+      - error-type
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultError'
+        error-type:
+          type: string
+          description: Machine-readable error code
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          example: invalid-key
   parameters:
     apiKey:
       name: apiKey

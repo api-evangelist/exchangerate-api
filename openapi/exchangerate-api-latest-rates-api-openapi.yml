@@ -47,6 +47,25 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
     LatestRatesResponse:
       type: object
       description: Latest exchange rates response.
@@ -83,33 +102,7 @@ components:
           description: Object mapping ISO 4217 currency codes to exchange rates from the base currency.
           additionalProperties:
             type: number
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
   parameters:
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
     BaseCode:
       name: base_code
       in: path
@@ -119,6 +112,13 @@ components:
         type: string
         pattern: ^[A-Z]{3}$
         example: USD
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
   securitySchemes:
     apiKeyPath:
       type: apiKey

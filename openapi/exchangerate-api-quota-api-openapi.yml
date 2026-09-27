@@ -45,15 +45,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
     QuotaResponse:
       type: object
       description: Quota response showing remaining requests for the API key.
@@ -78,25 +89,14 @@ components:
         refresh_day_of_month:
           type: integer
           description: Day of the month when the quota refreshes.
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
+  parameters:
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
   securitySchemes:
     apiKeyPath:
       type: apiKey
