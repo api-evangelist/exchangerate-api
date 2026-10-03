@@ -284,41 +284,6 @@ components:
           format: uri
           description: Link to the terms of use
           example: https://www.exchangerate-api.com/terms
-    ErrorResponse:
-      type: object
-      required:
-      - result
-      - error-type
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultError'
-        error-type:
-          type: string
-          description: Machine-readable error code
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          example: invalid-key
-    ResultSuccess:
-      type: string
-      enum:
-      - success
-      description: Indicates the request was successful
-    PairConversionResponse:
-      allOf:
-      - $ref: '#/components/schemas/PairRateResponse'
-      - type: object
-        required:
-        - conversion_result
-        properties:
-          conversion_result:
-            type: number
-            format: double
-            description: The result of converting the specified amount at the conversion_rate
-            example: 5.8884
     HistoricalRatesResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -354,11 +319,6 @@ components:
             example: '2023-03-15T00:00:01+00:00'
           conversion_rates:
             $ref: '#/components/schemas/ConversionRates'
-    ResultError:
-      type: string
-      enum:
-      - error
-      description: Indicates the request failed
     TimestampFields:
       type: object
       description: Update timestamp fields included in rate responses
@@ -381,6 +341,45 @@ components:
           type: string
           description: UTC datetime string of the next scheduled exchange rate update
           example: Sat, 28 Mar 2020 00:00:00 +0000
+    ErrorResponse:
+      type: object
+      required:
+      - result
+      - error-type
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultError'
+        error-type:
+          type: string
+          description: Machine-readable error code
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          example: invalid-key
+    ResultSuccess:
+      type: string
+      enum:
+      - success
+      description: Indicates the request was successful
+    LatestRatesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseMetadata'
+      - $ref: '#/components/schemas/TimestampFields'
+      - type: object
+        required:
+        - result
+        - base_code
+        - conversion_rates
+        properties:
+          base_code:
+            type: string
+            description: The ISO 4217 currency code used as the base for rates
+            example: USD
+          conversion_rates:
+            $ref: '#/components/schemas/ConversionRates'
     PairRateResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -405,22 +404,23 @@ components:
             format: double
             description: The exchange rate from base to target currency
             example: 0.8412
-    LatestRatesResponse:
+    ResultError:
+      type: string
+      enum:
+      - error
+      description: Indicates the request failed
+    PairConversionResponse:
       allOf:
-      - $ref: '#/components/schemas/BaseMetadata'
-      - $ref: '#/components/schemas/TimestampFields'
+      - $ref: '#/components/schemas/PairRateResponse'
       - type: object
         required:
-        - result
-        - base_code
-        - conversion_rates
+        - conversion_result
         properties:
-          base_code:
-            type: string
-            description: The ISO 4217 currency code used as the base for rates
-            example: USD
-          conversion_rates:
-            $ref: '#/components/schemas/ConversionRates'
+          conversion_result:
+            type: number
+            format: double
+            description: The result of converting the specified amount at the conversion_rate
+            example: 5.8884
     ConversionRates:
       type: object
       description: 'Object mapping ISO 4217 currency codes to their exchange rate values relative to the base currency
@@ -435,6 +435,14 @@ components:
         GBP: 0.7901
         JPY: 107.53
   parameters:
+    apiKey:
+      name: apiKey
+      in: path
+      required: true
+      description: Your personal API key obtained from the ExchangeRate-API dashboard
+      schema:
+        type: string
+        example: YOUR-API-KEY
     baseCurrency:
       name: baseCurrency
       in: path
@@ -457,14 +465,6 @@ components:
         maxLength: 3
         pattern: ^[A-Z]{3}$
         example: GBP
-    apiKey:
-      name: apiKey
-      in: path
-      required: true
-      description: Your personal API key obtained from the ExchangeRate-API dashboard
-      schema:
-        type: string
-        example: YOUR-API-KEY
   securitySchemes:
     BearerAuth:
       type: http

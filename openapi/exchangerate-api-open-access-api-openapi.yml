@@ -47,6 +47,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
   schemas:
     ErrorResponse:
       type: object
@@ -109,16 +119,6 @@ components:
           description: Object mapping ISO 4217 currency codes to exchange rates from the base currency.
           additionalProperties:
             type: number
-  parameters:
-    BaseCode:
-      name: base_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: USD
   securitySchemes:
     apiKeyPath:
       type: apiKey

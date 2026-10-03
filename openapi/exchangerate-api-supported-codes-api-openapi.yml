@@ -46,6 +46,25 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
     SupportedCodesResponse:
       type: object
       description: Supported codes response.
@@ -70,25 +89,6 @@ components:
               type: string
             minItems: 2
             maxItems: 2
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
   parameters:
     ApiKey:
       name: api_key

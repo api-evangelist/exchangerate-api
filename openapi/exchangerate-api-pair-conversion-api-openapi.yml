@@ -82,6 +82,13 @@ components:
         type: string
         pattern: ^[A-Z]{3}$
         example: USD
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
     Amount:
       name: amount
       in: path
@@ -91,13 +98,6 @@ components:
         type: number
         format: double
         example: 100.0
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
     TargetCode:
       name: target_code
       in: path
@@ -108,6 +108,25 @@ components:
         pattern: ^[A-Z]{3}$
         example: EUR
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
     PairResponse:
       type: object
       description: Pair conversion response without amount.
@@ -153,25 +172,6 @@ components:
           conversion_result:
             type: number
             description: Result of converting the requested amount at the current rate.
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
   securitySchemes:
     apiKeyPath:
       type: apiKey

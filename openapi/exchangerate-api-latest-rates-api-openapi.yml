@@ -47,25 +47,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
     LatestRatesResponse:
       type: object
       description: Latest exchange rates response.
@@ -102,6 +83,25 @@ components:
           description: Object mapping ISO 4217 currency codes to exchange rates from the base currency.
           additionalProperties:
             type: number
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
   parameters:
     BaseCode:
       name: base_code

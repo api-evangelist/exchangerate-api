@@ -74,6 +74,25 @@ components:
         pattern: ^[A-Z]{3}$
         example: EUR
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
     EnrichedPairResponse:
       allOf:
       - $ref: '#/components/schemas/PairResponse'
@@ -139,25 +158,6 @@ components:
         conversion_rate:
           type: number
           description: Exchange rate between base and target.
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
   securitySchemes:
     apiKeyPath:
       type: apiKey
