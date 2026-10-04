@@ -47,33 +47,43 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    BaseCode:
-      name: base_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: USD
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
-    TargetCode:
-      name: target_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the target currency (e.g. EUR).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: EUR
   schemas:
+    PairResponse:
+      type: object
+      description: Pair conversion response without amount.
+      properties:
+        result:
+          type: string
+          description: Status indicator.
+        documentation:
+          type: string
+          format: uri
+          description: Link to the API documentation.
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use.
+        time_last_update_unix:
+          type: integer
+          description: Last update Unix timestamp.
+        time_last_update_utc:
+          type: string
+          description: Last update in UTC.
+        time_next_update_unix:
+          type: integer
+          description: Next update Unix timestamp.
+        time_next_update_utc:
+          type: string
+          description: Next update in UTC.
+        base_code:
+          type: string
+          description: Supplied base currency.
+        target_code:
+          type: string
+          description: Supplied target currency.
+        conversion_rate:
+          type: number
+          description: Exchange rate between base and target.
     ErrorResponse:
       type: object
       description: Standard error envelope returned when a request cannot be fulfilled.
@@ -122,42 +132,32 @@ components:
                 type: string
                 format: uri
                 description: URL to a flag image for the locale.
-    PairResponse:
-      type: object
-      description: Pair conversion response without amount.
-      properties:
-        result:
-          type: string
-          description: Status indicator.
-        documentation:
-          type: string
-          format: uri
-          description: Link to the API documentation.
-        terms_of_use:
-          type: string
-          format: uri
-          description: Link to the terms of use.
-        time_last_update_unix:
-          type: integer
-          description: Last update Unix timestamp.
-        time_last_update_utc:
-          type: string
-          description: Last update in UTC.
-        time_next_update_unix:
-          type: integer
-          description: Next update Unix timestamp.
-        time_next_update_utc:
-          type: string
-          description: Next update in UTC.
-        base_code:
-          type: string
-          description: Supplied base currency.
-        target_code:
-          type: string
-          description: Supplied target currency.
-        conversion_rate:
-          type: number
-          description: Exchange rate between base and target.
+  parameters:
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
+    TargetCode:
+      name: target_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the target currency (e.g. EUR).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: EUR
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
   securitySchemes:
     apiKeyPath:
       type: apiKey

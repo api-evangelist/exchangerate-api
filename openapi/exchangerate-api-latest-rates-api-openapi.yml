@@ -46,6 +46,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
   schemas:
     LatestRatesResponse:
       type: object
@@ -102,23 +119,6 @@ components:
           - quota-reached
           - plan-upgrade-required
           - no-data-available
-  parameters:
-    BaseCode:
-      name: base_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: USD
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
   securitySchemes:
     apiKeyPath:
       type: apiKey

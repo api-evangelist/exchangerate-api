@@ -268,6 +268,41 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    TimestampFields:
+      type: object
+      description: Update timestamp fields included in rate responses
+      properties:
+        time_last_update_unix:
+          type: integer
+          format: int64
+          description: Unix epoch timestamp of the last exchange rate update
+          example: 1585267200
+        time_last_update_utc:
+          type: string
+          description: UTC datetime string of the last exchange rate update
+          example: Fri, 27 Mar 2020 00:00:00 +0000
+        time_next_update_unix:
+          type: integer
+          format: int64
+          description: Unix epoch timestamp of the next scheduled exchange rate update
+          example: 1585353600
+        time_next_update_utc:
+          type: string
+          description: UTC datetime string of the next scheduled exchange rate update
+          example: Sat, 28 Mar 2020 00:00:00 +0000
+    ConversionRates:
+      type: object
+      description: 'Object mapping ISO 4217 currency codes to their exchange rate values relative to the base currency
+
+        '
+      additionalProperties:
+        type: number
+        format: double
+      example:
+        USD: 1
+        EUR: 0.8876
+        GBP: 0.7901
+        JPY: 107.53
     BaseMetadata:
       type: object
       description: Common metadata fields returned in all successful responses
@@ -284,6 +319,22 @@ components:
           format: uri
           description: Link to the terms of use
           example: https://www.exchangerate-api.com/terms
+    LatestRatesResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseMetadata'
+      - $ref: '#/components/schemas/TimestampFields'
+      - type: object
+        required:
+        - result
+        - base_code
+        - conversion_rates
+        properties:
+          base_code:
+            type: string
+            description: The ISO 4217 currency code used as the base for rates
+            example: USD
+          conversion_rates:
+            $ref: '#/components/schemas/ConversionRates'
     HistoricalRatesResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -319,67 +370,11 @@ components:
             example: '2023-03-15T00:00:01+00:00'
           conversion_rates:
             $ref: '#/components/schemas/ConversionRates'
-    TimestampFields:
-      type: object
-      description: Update timestamp fields included in rate responses
-      properties:
-        time_last_update_unix:
-          type: integer
-          format: int64
-          description: Unix epoch timestamp of the last exchange rate update
-          example: 1585267200
-        time_last_update_utc:
-          type: string
-          description: UTC datetime string of the last exchange rate update
-          example: Fri, 27 Mar 2020 00:00:00 +0000
-        time_next_update_unix:
-          type: integer
-          format: int64
-          description: Unix epoch timestamp of the next scheduled exchange rate update
-          example: 1585353600
-        time_next_update_utc:
-          type: string
-          description: UTC datetime string of the next scheduled exchange rate update
-          example: Sat, 28 Mar 2020 00:00:00 +0000
-    ErrorResponse:
-      type: object
-      required:
-      - result
-      - error-type
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultError'
-        error-type:
-          type: string
-          description: Machine-readable error code
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          example: invalid-key
     ResultSuccess:
       type: string
       enum:
       - success
       description: Indicates the request was successful
-    LatestRatesResponse:
-      allOf:
-      - $ref: '#/components/schemas/BaseMetadata'
-      - $ref: '#/components/schemas/TimestampFields'
-      - type: object
-        required:
-        - result
-        - base_code
-        - conversion_rates
-        properties:
-          base_code:
-            type: string
-            description: The ISO 4217 currency code used as the base for rates
-            example: USD
-          conversion_rates:
-            $ref: '#/components/schemas/ConversionRates'
     PairRateResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -404,6 +399,24 @@ components:
             format: double
             description: The exchange rate from base to target currency
             example: 0.8412
+    ErrorResponse:
+      type: object
+      required:
+      - result
+      - error-type
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultError'
+        error-type:
+          type: string
+          description: Machine-readable error code
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          example: invalid-key
     ResultError:
       type: string
       enum:
@@ -421,20 +434,18 @@ components:
             format: double
             description: The result of converting the specified amount at the conversion_rate
             example: 5.8884
-    ConversionRates:
-      type: object
-      description: 'Object mapping ISO 4217 currency codes to their exchange rate values relative to the base currency
-
-        '
-      additionalProperties:
-        type: number
-        format: double
-      example:
-        USD: 1
-        EUR: 0.8876
-        GBP: 0.7901
-        JPY: 107.53
   parameters:
+    targetCurrency:
+      name: targetCurrency
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the target currency (e.g. GBP, JPY)
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        example: GBP
     apiKey:
       name: apiKey
       in: path
@@ -454,17 +465,6 @@ components:
         maxLength: 3
         pattern: ^[A-Z]{3}$
         example: USD
-    targetCurrency:
-      name: targetCurrency
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the target currency (e.g. GBP, JPY)
-      schema:
-        type: string
-        minLength: 3
-        maxLength: 3
-        pattern: ^[A-Z]{3}$
-        example: GBP
   securitySchemes:
     BearerAuth:
       type: http

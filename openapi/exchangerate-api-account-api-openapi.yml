@@ -69,6 +69,11 @@ components:
           format: uri
           description: Link to the terms of use
           example: https://www.exchangerate-api.com/terms
+    ResultSuccess:
+      type: string
+      enum:
+      - success
+      description: Indicates the request was successful
     ErrorResponse:
       type: object
       required:
@@ -87,11 +92,6 @@ components:
           - inactive-account
           - quota-reached
           example: invalid-key
-    ResultSuccess:
-      type: string
-      enum:
-      - success
-      description: Indicates the request was successful
     ResultError:
       type: string
       enum:

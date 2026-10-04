@@ -77,30 +77,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    BaseCode:
-      name: base_code
-      in: path
-      required: true
-      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
-      schema:
-        type: string
-        pattern: ^[A-Z]{3}$
-        example: USD
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
-    Year:
-      name: year
-      in: path
-      required: true
-      description: Year for historical data (full four-digit year).
-      schema:
-        type: integer
-        example: 2024
     Day:
       name: day
       in: path
@@ -111,6 +87,23 @@ components:
         minimum: 1
         maximum: 31
         example: 15
+    Year:
+      name: year
+      in: path
+      required: true
+      description: Year for historical data (full four-digit year).
+      schema:
+        type: integer
+        example: 2024
+    Amount:
+      name: amount
+      in: path
+      required: true
+      description: Decimal amount to convert (xxxx.xxxx format).
+      schema:
+        type: number
+        format: double
+        example: 100.0
     Month:
       name: month
       in: path
@@ -121,35 +114,23 @@ components:
         minimum: 1
         maximum: 12
         example: 3
-    Amount:
-      name: amount
+    ApiKey:
+      name: api_key
       in: path
       required: true
-      description: Decimal amount to convert (xxxx.xxxx format).
+      description: Your ExchangeRate-API dashboard API key.
       schema:
-        type: number
-        format: double
-        example: 100.0
+        type: string
+    BaseCode:
+      name: base_code
+      in: path
+      required: true
+      description: ISO 4217 three-letter currency code for the base currency (e.g. USD).
+      schema:
+        type: string
+        pattern: ^[A-Z]{3}$
+        example: USD
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
     HistoricalAmountsResponse:
       type: object
       description: Historical rates with converted amounts.
@@ -217,6 +198,25 @@ components:
           description: Mapping of ISO 4217 currency codes to historical exchange rates.
           additionalProperties:
             type: number
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
   securitySchemes:
     apiKeyPath:
       type: apiKey
