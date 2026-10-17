@@ -65,27 +65,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    BaseMetadata:
-      type: object
-      description: Common metadata fields returned in all successful responses
-      properties:
-        result:
-          $ref: '#/components/schemas/ResultSuccess'
-        documentation:
-          type: string
-          format: uri
-          description: Link to the API documentation
-          example: https://www.exchangerate-api.com/docs
-        terms_of_use:
-          type: string
-          format: uri
-          description: Link to the terms of use
-          example: https://www.exchangerate-api.com/terms
-    ResultSuccess:
-      type: string
-      enum:
-      - success
-      description: Indicates the request was successful
     ErrorResponse:
       type: object
       required:
@@ -109,6 +88,22 @@ components:
       enum:
       - error
       description: Indicates the request failed
+    BaseMetadata:
+      type: object
+      description: Common metadata fields returned in all successful responses
+      properties:
+        result:
+          $ref: '#/components/schemas/ResultSuccess'
+        documentation:
+          type: string
+          format: uri
+          description: Link to the API documentation
+          example: https://www.exchangerate-api.com/docs
+        terms_of_use:
+          type: string
+          format: uri
+          description: Link to the terms of use
+          example: https://www.exchangerate-api.com/terms
     SupportedCodesResponse:
       allOf:
       - $ref: '#/components/schemas/BaseMetadata'
@@ -135,6 +130,11 @@ components:
               - US Dollar
             - - EUR
               - Euro
+    ResultSuccess:
+      type: string
+      enum:
+      - success
+      description: Indicates the request was successful
   parameters:
     apiKey:
       name: apiKey

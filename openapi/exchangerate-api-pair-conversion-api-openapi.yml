@@ -73,6 +73,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned when a request cannot be fulfilled.
+      properties:
+        result:
+          type: string
+          description: Status indicator (error).
+          example: error
+        error-type:
+          type: string
+          description: Machine-readable error code.
+          enum:
+          - unsupported-code
+          - malformed-request
+          - invalid-key
+          - inactive-account
+          - quota-reached
+          - plan-upgrade-required
+          - no-data-available
+    PairAmountResponse:
+      allOf:
+      - $ref: '#/components/schemas/PairResponse'
+      - type: object
+        description: Pair conversion with additional converted amount.
+        properties:
+          conversion_result:
+            type: number
+            description: Result of converting the requested amount at the current rate.
     PairResponse:
       type: object
       description: Pair conversion response without amount.
@@ -109,34 +137,6 @@ components:
         conversion_rate:
           type: number
           description: Exchange rate between base and target.
-    PairAmountResponse:
-      allOf:
-      - $ref: '#/components/schemas/PairResponse'
-      - type: object
-        description: Pair conversion with additional converted amount.
-        properties:
-          conversion_result:
-            type: number
-            description: Result of converting the requested amount at the current rate.
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned when a request cannot be fulfilled.
-      properties:
-        result:
-          type: string
-          description: Status indicator (error).
-          example: error
-        error-type:
-          type: string
-          description: Machine-readable error code.
-          enum:
-          - unsupported-code
-          - malformed-request
-          - invalid-key
-          - inactive-account
-          - quota-reached
-          - plan-upgrade-required
-          - no-data-available
   parameters:
     Amount:
       name: amount
@@ -147,13 +147,6 @@ components:
         type: number
         format: double
         example: 100.0
-    ApiKey:
-      name: api_key
-      in: path
-      required: true
-      description: Your ExchangeRate-API dashboard API key.
-      schema:
-        type: string
     TargetCode:
       name: target_code
       in: path
@@ -172,6 +165,13 @@ components:
         type: string
         pattern: ^[A-Z]{3}$
         example: USD
+    ApiKey:
+      name: api_key
+      in: path
+      required: true
+      description: Your ExchangeRate-API dashboard API key.
+      schema:
+        type: string
   securitySchemes:
     apiKeyPath:
       type: apiKey
