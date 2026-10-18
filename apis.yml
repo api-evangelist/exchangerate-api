@@ -38,6 +38,11 @@ x-category: Currency Exchange
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
+- Foreign Exchange
+- Financial Data
+- Currency Conversion
+- Public APIs
+tags_raw:
 - Currency Exchange
 - Foreign Exchange
 - Financial Data
