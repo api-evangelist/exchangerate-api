@@ -50,500 +50,6 @@ tags_raw:
 - Currency Conversion
 - Public APIs
 apis:
-- aid: exchangerate-api:exchangerate-api-enriched-data-api
-  name: ExchangeRate-API Enriched Data API
-  description: >-
-    Pair conversion enriched with target currency locale, name, symbol, and flag (Business / Volume plans
-    only).
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Enriched Data
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-enriched-data-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-historical-rates-api
-  name: ExchangeRate-API Historical Rates API
-  description: >-
-    Historical exchange rates for a specific date back to 1990 (Pro / Business / Volume plans only).
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Historical Rates
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-historical-rates-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-latest-rates-api
-  name: ExchangeRate-API Latest Rates API
-  description: >-
-    Standard endpoint returning latest exchange rates from a base currency to all supported currencies.
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Latest Rates
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-latest-rates-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-open-access-api
-  name: ExchangeRate-API Open Access API
-  description: Free no-key endpoint with once-daily rates and attribution requirement.
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Open Access
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-open-access-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-pair-conversion-api
-  name: ExchangeRate-API Pair Conversion API
-  description: Direct currency-to-currency exchange rate and optional amount conversion.
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Pair Conversion
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-pair-conversion-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-quota-api
-  name: ExchangeRate-API Quota API
-  description: Inspect the remaining request quota for the API key.
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Quota
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-quota-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
-- aid: exchangerate-api:exchangerate-api-supported-codes-api
-  name: ExchangeRate-API Supported Codes API
-  description: List of all supported ISO 4217 currency codes with their full names.
-  humanURL: https://www.exchangerate-api.com/docs/standard-requests
-  baseURL: https://v6.exchangerate-api.com/v6
-  tags:
-  - Supported Codes
-  properties:
-  - type: OpenAPI
-    url: openapi/exchangerate-api-supported-codes-api-openapi.yml
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/standard-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-latest-rates-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-latest-rates-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-latest-rates-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-pair-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-pair-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/enriched-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-enriched-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-enriched-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-enriched-pair-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/historical-data-requests
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-historical-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-historical-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-example.json
-  - type: Examples
-    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-supported-codes-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-supported-codes-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-supported-codes-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/overview
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-quota-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-quota-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-quota-example.json
-  - type: Documentation
-    url: https://www.exchangerate-api.com/docs/free
-  - type: JSONSchema
-    url: json-schema/exchangerate-api-open-access-schema.json
-  - type: JSONStructure
-    url: json-structure/exchangerate-api-open-access-structure.json
-  - type: Examples
-    url: examples/exchangerate-api-get-open-access-latest-example.json
 - aid: exchangerate-api:exchangerate-api-account-api
   name: ExchangeRate-API Account API
   description: API quota and account information
@@ -614,18 +120,76 @@ apis:
     url: vocabulary/exchangerate-vocabulary.yml
   - type: JSONLDContext
     url: json-ld/exchangerate-context.jsonld
-- aid: exchangerate-api:exchangerate-api-exchange-rates-api
-  name: ExchangeRate-API Exchange Rates API
-  description: Real-time and historical currency exchange rate endpoints
+- aid: exchangerate-api:exchangerate-api-latest-api
+  name: ExchangeRate-API Latest API
+  description: The Latest API from ExchangeRate-API — 1 operation(s) for latest.
   humanURL: https://www.exchangerate-api.com/docs/standard-requests
   baseURL: https://v6.exchangerate-api.com/v6
   tags:
-  - Exchange Rates
+  - Latest
   properties:
   - type: OpenAPI
-    url: openapi/exchangerate-api-exchange-rates-api-openapi.yml
+    url: openapi/exchangerate-api-latest-api-openapi.yml
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/standard-requests
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-latest-rates-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-latest-rates-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-latest-rates-example.json
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/pair-conversion-requests
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-pair-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-pair-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-pair-conversion-example.json
+  - type: Examples
+    url: examples/exchangerate-api-get-pair-conversion-with-amount-example.json
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/enriched-data-requests
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-enriched-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-enriched-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-enriched-pair-example.json
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/historical-data-requests
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-historical-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-historical-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-historical-rates-example.json
+  - type: Examples
+    url: examples/exchangerate-api-get-historical-rates-with-amount-example.json
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/supported-codes-endpoint
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-supported-codes-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-supported-codes-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-supported-codes-example.json
   - type: Documentation
     url: https://www.exchangerate-api.com/docs/overview
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-quota-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-quota-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-quota-example.json
+  - type: Documentation
+    url: https://www.exchangerate-api.com/docs/free
+  - type: JSONSchema
+    url: json-schema/exchangerate-api-open-access-schema.json
+  - type: JSONStructure
+    url: json-structure/exchangerate-api-open-access-structure.json
+  - type: Examples
+    url: examples/exchangerate-api-get-open-access-latest-example.json
   - type: OpenAccess
     url: https://www.exchangerate-api.com/docs/free
   - type: Authentication

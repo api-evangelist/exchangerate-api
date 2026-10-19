@@ -1,0 +1,12 @@
+{
+ "url": "https://www.exchangerate-api.com/openapi.yaml",
+ "final": "https://www.exchangerate-api.com/openapi.yaml",
+ "status": 200,
+ "content_type": "application/octet-stream",
+ "bytes": 2216,
+ "sha256": "95882ca3143c0b48d0cb9560523e063cd7f7afbfd2676f55a8e9a26f5506f8d9",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: ExchangeRate Account Currencies API
-  description: ExchangeRate-API provides real-time and historical currency exchange rates for 165 currencies across 200 countries.
+  description: ExchangeRate-API provides real-time and historical currency exchange rates for 165 currencies across 200 countries. Operating since 2010, the service delivers reliable currency conversion data via simple HTTP GET requests. Authentication is supported via API key embedded in the URL path or via Bearer token header. A free tier is available with 1,500 monthly requests and daily updates; paid plans offer hourly or 5-minute update frequencies and higher quotas. Historical data is available back to 1990.
   version: '6'
   termsOfService: https://www.exchangerate-api.com/terms
   contact:
@@ -83,11 +83,6 @@ components:
           - inactive-account
           - quota-reached
           example: invalid-key
-    ResultError:
-      type: string
-      enum:
-      - error
-      description: Indicates the request failed
     BaseMetadata:
       type: object
       description: Common metadata fields returned in all successful responses
@@ -135,6 +130,11 @@ components:
       enum:
       - success
       description: Indicates the request was successful
+    ResultError:
+      type: string
+      enum:
+      - error
+      description: Indicates the request failed
   parameters:
     apiKey:
       name: apiKey
