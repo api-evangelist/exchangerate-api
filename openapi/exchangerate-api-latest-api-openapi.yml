@@ -63,3 +63,9 @@ paths:
 externalDocs:
   description: API Documentation
   url: https://www.exchangerate-api.com/docs/documentation
+x-provenance:
+  method: harvested
+  publisher: ExchangeRate-API
+  source: https://www.exchangerate-api.com/openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
